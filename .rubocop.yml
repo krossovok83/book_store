@@ -1,0 +1,3 @@
+Style/StringLiterals:
+  SupportedStyles:
+    - double_quotes
