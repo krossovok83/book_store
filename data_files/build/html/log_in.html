@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width"/>
 <title>Bookstore</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-<link href="../css/style.css" rel="stylesheet"/></head>
+<link href="../../../app/assets/stylesheets/style.css" rel="stylesheet"/></head>
 <body>
 <header class="navbar navbar-default">
 <div class="container">
@@ -59,96 +59,32 @@
 <li>
 <a href="#">My account</a></li></ul></div></div></div></header>
 <main class="container general-main-wrap">
-<h1 class="mt-0 mb-25">My Orders</h1>
-<p class="lead small mb-10 visible-xs">Sort by</p>
-<div class="dropdowns dropdown general-order-dropdown">
-<a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small">Waiting for processing
-<i class="fa fa-angle-down dropdown-icon pull-right"></i></a>
-<ul class="dropdown-menu">
-<li>
-<a href="#">Newest first</a></li>
-<li>
-<a href="#">Popular first</a></li>
-<li>
-<a href="#">Price: Low to hight</a></li>
-<li>
-<a href="#">Price: Low to hight</a></li></ul></div>
-<div class="visible-xs">
-<div class="general-cart-item divider-lg-bottom pt-0">
-<table class="table">
-<tr>
-<td class="col-half">
-<span class="in-grey-600">Number</span></td>
-<td class="col-half">
-<span class="general-order-number">R25314582</span></td></tr>
-<tr>
-<td>
-<span class="in-grey-600">Completed at</span></td>
-<td>
-<span class="in-grey-900 font-16 fw-300">2016-11-14</span></td></tr>
-<tr>
-<td>
-<span class="in-grey-600">Status</span></td>
-<td>
-<span class="font-16 in-grey-900 fw-300">In Progress</span></td></tr>
-<tr>
-<td>
-<span class="in-grey-600">Total</span></td>
-<td>
-<strong class="font-16">€32.90</strong></td></tr></table></div>
-<div class="general-cart-item">
-<table class="table">
-<tr>
-<td class="col-half">
-<span class="in-grey-600">Number</span></td>
-<td class="col-half">
-<span class="general-order-number">R25314582</span></td></tr>
-<tr>
-<td>
-<span class="in-grey-600">Completed at</span></td>
-<td>
-<span class="in-grey-900 font-16 fw-300">2016-11-14</span></td></tr>
-<tr>
-<td>
-<span class="in-grey-600">Status</span></td>
-<td>
-<span class="font-16 fw-300 text-success">Delivered</span></td></tr>
-<tr>
-<td>
-<span class="in-grey-600">Total</span></td>
-<td>
-<strong class="font-16">€32.90</strong></td></tr></table></div></div>
-<div class="hidden-xs mb-res-50">
-<table class="table table-hover">
-<thead>
-<tr>
-<th>
-<span class="in-grey-600">Number</span></th>
-<th>
-<span class="in-grey-600">Completed at</span></th>
-<th>
-<span class="in-grey-600">Status</span></th>
-<th>
-<span class="in-grey-600">Total</span></th></tr></thead>
-<tbody>
-<tr>
-<td>
-<span class="general-order-number">R25314582</span></td>
-<td>
-<span class="in-grey-900 font-16 fw-300">2016-11-14</span></td>
-<td>
-<span class="font-16 in-grey-900 fw-300">In Progress</span></td>
-<td>
-<strong class="font-16">€32.90</strong></td></tr>
-<tr>
-<td>
-<span class="general-order-number">R25314582</span></td>
-<td>
-<span class="in-grey-900 font-16 fw-300">2016-11-14</span></td>
-<td>
-<span class="font-16 fw-300 text-success">Delivered</span></td>
-<td>
-<strong class="font-16">€32.90</strong></td></tr></tbody></table></div></main>
+<div class="text-center">
+<h3 class="general-login-title">Log In</h3>
+<a href="#" class="general-login-icon">
+<i class="fa fa-facebook-official"></i></a>
+<p class="general-login-text">or</p></div>
+<form class="general-form">
+<div class="form-group mb-30">
+<label for="email" class="control-label input-label">Enter Email</label>
+<input id="email" name="email" type="email" placeholder="Enter Email" class="form-control"/></div>
+<div class="form-group mb-30">
+<label for="password" class="control-label input-label">Password</label>
+<input id="password" name="password" type="password" placeholder="Password" class="form-control"/>
+<a href="#" class="help-block in-gold-500">Forgot password?</a></div>
+<div class="form-group mb-30">
+<label for="confirm" class="control-label input-label">Confirm Password</label>
+<input id="confirm" name="confirm" type="password" placeholder="Confirm Password" class="form-control"/></div>
+<div class="form-group checkbox text-center mb-30">
+<label class="checkbox-label">
+<input type="checkbox" hidden="true" class="checkbox-input"/>
+<span class="checkbox-icon">
+<i class="fa fa-check"></i></span>
+<span class="checkbox-text">Remember me</span></label></div>
+<div class="text-center">
+<button class="btn btn-default mb-20">Back to Store</button></div></form>
+<p class="general-sign-text text-center">Don’t have an Account?
+<a href="#" class="in-gold-500">Sign Up</a></p></main>
 <footer class="navbar-inverse">
 <div class="container">
 <div class="row">
@@ -179,5 +115,5 @@
 <a href="#" class="nav-link">
 <i aria-hidden="true" class="fa fa-instagram"></i></a></li></ul></div></div></div></footer>
 <script src="https://use.fontawesome.com/67602d7308.js"></script>
-<script src="../../javascripts/jquery.js"></script>
-<script src="../../javascripts/bootstrap.js"></script></body></html>
+<script src="../../layout/javascripts/jquery.js"></script>
+<script src="../../layout/javascripts/bootstrap.js"></script></body></html>

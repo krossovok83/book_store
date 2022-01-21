@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width"/>
 <title>Bookstore</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-<link href="../css/style.css" rel="stylesheet"/></head>
+<link href="../../../app/assets/stylesheets/style.css" rel="stylesheet"/></head>
 <body>
 <header class="navbar navbar-default">
 <div class="container">
@@ -58,33 +58,68 @@
 <a href="#">Log out</a></li></ul></li>
 <li>
 <a href="#">My account</a></li></ul></div></div></div></header>
-<main class="container general-main-wrap">
+<main class="container mb-res-50">
+<h1 class="general-title-margin">Checkout</h1>
+<ul class="steps list-inline">
+<li class="step active">
+<span class="step-number">1</span>
+<span class="step-text hidden-xs">Address</span></li>
+<li class="step-divider"></li>
+<li class="step">
+<span class="step-number">2</span>
+<span class="step-text hidden-xs">Delivery</span></li>
+<li class="step-divider"></li>
+<li class="step">
+<span class="step-number">3</span>
+<span class="step-text hidden-xs">Payment</span></li>
+<li class="step-divider"></li>
+<li class="step">
+<span class="step-number">4</span>
+<span class="step-text hidden-xs">Confirm</span></li>
+<li class="step-divider"></li>
+<li class="step">
+<span class="step-number">5</span>
+<span class="step-text hidden-xs">Complete</span></li></ul>
+<h3 class="general-subtitle">Credit Card</h3>
+<form class="max-600 mb-80">
+<div class="form-group has-error">
+<label for="cardNumber" class="control-label input-label">Card Number</label>
+<input id="cardNumber" type="number" name="cardnumber" placeholder="Card Number" class="form-control"/>
+<span class="help-block">Please enter a valid credit card number</span></div>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label for="cardName" class="control-label input-label">Name on Card</label>
+<input id="cardName" type="text" name="ccname" placeholder="Name on Card" class="form-control"/></div></div>
+<div class="col-sm-3">
+<div class="form-group">
+<label for="firstName" class="control-label input-label">MM / YY</label>
+<input id="firstName" name="exp-date" type="text" placeholder="MM / YY" class="form-control"/></div></div>
+<div class="col-sm-3">
+<div class="form-group relative">
+<label for="firstName" class="control-label input-label">CVV</label>
+<input id="firstName" name="cvc" type="number" placeholder="CVV" class="form-control"/>
+<i class="fa fa-question-circle general-form-help"></i></div></div></div></form>
+<div class="general-text-align">
+<p class="in-gold-500 font-18">Order Summary</p>
+<table class="general-summary-table">
+<tr>
+<td>
+<p class="font-16">Subtotal:</p></td>
+<td>
+<p class="font-16">€117.69</p></td></tr>
+<tr>
+<td>
+<p class="font-16">Coupon:</p></td>
+<td>
+<p class="font-16">€0.00</p></td></tr>
+<tr>
+<td>
+<strong class="font-18">Order Total:</strong></td>
+<td>
+<strong class="font-18">€117.69</strong></td></tr></table></div>
 <div class="text-center">
-<h3 class="general-login-title">Log In</h3>
-<a href="#" class="general-login-icon">
-<i class="fa fa-facebook-official"></i></a>
-<p class="general-login-text">or</p></div>
-<form class="general-form">
-<div class="form-group mb-30">
-<label for="email" class="control-label input-label">Enter Email</label>
-<input id="email" name="email" type="email" placeholder="Enter Email" class="form-control"/></div>
-<div class="form-group mb-30">
-<label for="password" class="control-label input-label">Password</label>
-<input id="password" name="password" type="password" placeholder="Password" class="form-control"/>
-<a href="#" class="help-block in-gold-500">Forgot password?</a></div>
-<div class="form-group mb-30">
-<label for="confirm" class="control-label input-label">Confirm Password</label>
-<input id="confirm" name="confirm" type="password" placeholder="Confirm Password" class="form-control"/></div>
-<div class="form-group checkbox text-center mb-30">
-<label class="checkbox-label">
-<input type="checkbox" hidden="true" class="checkbox-input"/>
-<span class="checkbox-icon">
-<i class="fa fa-check"></i></span>
-<span class="checkbox-text">Remember me</span></label></div>
-<div class="text-center">
-<button class="btn btn-default mb-20">Back to Store</button></div></form>
-<p class="general-sign-text text-center">Don’t have an Account?
-<a href="#" class="in-gold-500">Sign Up</a></p></main>
+<button class="btn btn-default mb-80">Save and Continue</button></div></main>
 <footer class="navbar-inverse">
 <div class="container">
 <div class="row">
@@ -115,5 +150,5 @@
 <a href="#" class="nav-link">
 <i aria-hidden="true" class="fa fa-instagram"></i></a></li></ul></div></div></div></footer>
 <script src="https://use.fontawesome.com/67602d7308.js"></script>
-<script src="../../javascripts/jquery.js"></script>
-<script src="../../javascripts/bootstrap.js"></script></body></html>
+<script src="../../layout/javascripts/jquery.js"></script>
+<script src="../../layout/javascripts/bootstrap.js"></script></body></html>
