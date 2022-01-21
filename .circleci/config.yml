@@ -5,7 +5,7 @@ executors:
     working_directory: ~/repo
     description: The official CircleCI Ruby Docker Image
     docker:
-      - image: circleci/ruby:3.0.2
+      - image: circleci/ruby:3.0.3
 
 caches:
   - &bundle_cache_full v2-repo-{{ checksum "Gemfile.lock" }}
@@ -35,7 +35,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
+      - image: circleci/ruby:3.0.3-stretch-node
     executor: ruby/default
     steps:
       - checkout
