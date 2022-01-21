@@ -35,7 +35,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.0.3-stretch-node
+      - image: circleci/ruby:3.0.3
     executor: ruby/default
     steps:
       - checkout
