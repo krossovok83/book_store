@@ -19,7 +19,6 @@ commands:
           keys:
             - *bundle_cache_full
             - *bundle_cache
-      #      - run: gem install bundler:2.2.32
       - run: bundle install
       - save_cache:
           key: *bundle_cache_full
