@@ -50,6 +50,7 @@ jobs:
       - run:
           name: Database Setup
           command: |
+            sudo apt install nodejs
             bundle exec rake db:create
             bundle exec rake db:structure:load
 
