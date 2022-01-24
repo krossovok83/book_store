@@ -23,6 +23,10 @@ commands:
             - *bundle_cache
       #      - run: gem install bundler:2.2.32
       - run: bundle install
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
+      - run: node --version
       - save_cache:
           key: *bundle_cache_full
           paths:
