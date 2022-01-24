@@ -6,10 +6,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.0.3"
 gem "aasm", "~> 5.2.0"
 gem "bootsnap", require: false
+gem "bootstrap", "~> 5.1.3"
 gem "device", "~> 0.0.0"
 gem "haml", "~> 5.2.2"
 gem "importmap-rails", "~> 1.0.2"
 gem "jbuilder", "~> 2.11.5"
+gem "jquery-rails", "~> 4.4.0"
 gem "mini_magick", "~> 4.11.0"
 gem "omniauth", "~> 2.0.4"
 gem "omniauth-facebook", "~> 9.0.0"

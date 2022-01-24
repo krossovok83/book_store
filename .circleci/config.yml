@@ -35,6 +35,12 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:3.0.3
+      - image: cimg/postgres:14.0
+          auth:
+            username: mydockerhub-user
+            password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          environment:
+            POSTGRES_USER: postgres
     executor: ruby/default
     steps:
       - checkout
