@@ -9,7 +9,24 @@ executors:
     docker:
       - image: cimg/ruby:3.0.3
 
+caches:
+  - &bundle_cache_full v2-repo-{{ checksum "Gemfile.lock" }}
+  - &bundle_cache v2-repo-
+
 commands:
+  defaults:
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - *bundle_cache_full
+            - *bundle_cache
+      #      - run: gem install bundler:2.2.32
+      - run: bundle install
+      - save_cache:
+          key: *bundle_cache_full
+          paths:
+            - vendor/bundle
   run_specs:
     description: commands to start tests
     steps:
@@ -86,6 +103,7 @@ jobs:
   run_spec:
     executor: default
     steps:
+      - defaults
       - run_specs
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
