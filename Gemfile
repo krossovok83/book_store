@@ -25,6 +25,7 @@ gem "sass", "~> 3.7.4"
 gem "shrine", "~> 3.4.0"
 gem "sprockets-rails", "~> 3.4.2"
 gem "stimulus-rails", "~> 1.0.2"
+gem "therubyracer", platforms: :ruby
 gem "turbo-rails", "~> 1.0.1"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
