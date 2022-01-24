@@ -2,6 +2,13 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.0
 
+executors:
+  default:
+    working_directory: ~/repo
+    description: The official CircleCI Ruby Docker Image
+    docker:
+      - image: circleci/ruby:3.0.2
+
 commands:
   run_specs:
     description: commands to start tests
@@ -76,8 +83,13 @@ jobs:
       # Save artifacts
       - store_test_results:
           path: /tmp/test-results
+  run_spec:
+    executor: default
+    steps:
+      - run_specs
 workflows:
-  sample: test_my_app
+  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
       - run_spec
