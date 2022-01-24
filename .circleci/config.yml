@@ -1,6 +1,14 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.0
+
+commands:
+  run_specs:
+    description: commands to start tests
+    steps:
+      - run:
+          name: run specs
+          command: bundle exec rspec
 jobs:
   build:
     working_directory: ~/circleci-demo-ruby-rails
@@ -68,3 +76,8 @@ jobs:
       # Save artifacts
       - store_test_results:
           path: /tmp/test-results
+workflows:
+  sample: test_my_app
+    jobs:
+      - build
+      - run_spec
