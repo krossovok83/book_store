@@ -7,7 +7,7 @@ executors:
     working_directory: ~/repo
     description: The official CircleCI Ruby Docker Image
     docker:
-      - image: circleci/ruby:3.0.2
+      - image: cimg/ruby:3.0.3
 
 commands:
   run_specs:
@@ -48,8 +48,8 @@ jobs:
       # Restore bundle cache
       - restore_cache:
           keys:
-            - rails-demo-{{ checksum "Gemfile.lock" }}
-            - rails-demo-
+            - &bundle_cache_full v2-repo-{{ checksum "Gemfile.lock" }}
+            - &bundle_cache v2-repo-
 
       # Bundle install dependencies
       - run:
@@ -66,7 +66,7 @@ jobs:
 
       # Store bundle cache
       - save_cache:
-          key: rails-demo-{{ checksum "Gemfile.lock" }}
+          key: *bundle_cache_full
           paths:
             - vendor/bundle
 
