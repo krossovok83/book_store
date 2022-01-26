@@ -7,7 +7,7 @@ ruby "3.0.3"
 gem "aasm", "~> 5.2.0"
 gem "bootsnap", require: false
 gem "bootstrap-sass", "~> 3.3.7"
-gem "device", "~> 0.0.0"
+gem "devise", "~> 4.8.1"
 gem "execjs"
 gem "haml", "~> 5.2.2"
 gem "importmap-rails", "~> 1.0.2"
