@@ -61,7 +61,7 @@
                     %a{href: "#"} Web design
                   %li.divider{role: "separator"}
                   %li
-                    %a{href: "#"} Log out
+                    %a{href: "devise/session#destroy"} Log out
               %li
                 %a{href: "#"} My account
     %main.container
@@ -76,11 +76,16 @@
               %li
                 = link_to "Home", root_path
               %li
-                %a.nav-link{href: "#"} Shop
+                %a.nav-link{href: "books#index"} Shop
               %li
                 %a.nav-link{href: "#"} Orders
               %li
                 %a.nav-link{href: "#"} Settings
+              - unless current_user.nil?
+                %li
+                  %a.nav-link #{current_user.email}
+                %li
+                  = button_to "Sign Out", destroy_user_session_path, method: :delete
           .col-sm-3
             %p.general-nav-mail support@bookstore.com
             %p.general-nav-number (555)-555-5555
@@ -97,3 +102,4 @@
               %li
                 %a.nav-link{href: "#"}
                   %i.fa.fa-instagram{'aria-hidden': "true"}
+  %script{src: "https://use.fontawesome.com/67602d7308.js"}
