@@ -1,0 +1,18 @@
+%h3.general-login-title.text-center New Book
+= form_with model: @book do |form|
+  .field.form-group.mb-30
+    = form.label :title, "Enter Title"
+    %br/
+    = form.text_field :title, autocomplete: "title", class: "form-control"
+  .field.form-group.mb-30
+    = form.label :author, "Enter Author Name"
+    %br/
+    = form.text_field :author, autocomplete: "author", class: "form-control"
+  .field.form-group.mb-30
+    = form.label :year, "Enter Year"
+    %br/
+    = form.date_field :year, autocomplete: "year", class: "datepicker form-control"
+  .field.form-group.mb-30
+    = form.label :title, "Enter Title"
+    %br/
+    = form.text_field :title, autocomplete: "title", class: "form-control"

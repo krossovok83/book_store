@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  root "home#home"
   resources :books
+  root "home#home"
+  resources :books, only: %i[index show]
 end
