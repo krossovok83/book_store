@@ -41,26 +41,27 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  # rubocop:disable Metrics
   def generate
     init_relation
-    book = Book.new
-    book.title = ::FFaker::Book.title
-    book.author_id = @authors_id.sample
-    book.category_id = @categories_id.sample
-    book.price = rand(10.0..90.0)
-    book.count = rand(5..30)
-    book.year = rand(1980..2021)
-    book.description = ::FFaker::Book.description
-    book.height = rand(10.0..30.0)
-    book.weight = rand(10.0..30.0)
-    book.depth = rand(0.4..3)
-    book.created_at = DateTime.now
-    book.updated_at = DateTime.now
-    book.materials = "#{%w[Hardcover Softcover].sample}, #{%w[Glossy Mate].sample}paper"
-    book.cover = ::FFaker::Book.orly_cover
+    book = Book.new(title: ::FFaker::Book.title,
+                    author_id: @author.map(&:last).sample,
+                    category_id: @category.map(&:last).sample,
+                    price: rand(10.0..90.0),
+                    count: rand(5..30),
+                    year: rand(1980..2021),
+                    description: ::FFaker::Book.description,
+                    height: rand(10.0..30.0),
+                    weight: rand(10.0..30.0),
+                    depth: rand(0.4..3),
+                    created_at: DateTime.now,
+                    updated_at: DateTime.now,
+                    materials: "#{%w[Hardcover Softcover].sample}, #{%w[Glossy Mate].sample}paper",
+                    cover: ::FFaker::Book.orly_cover)
     book.save
     redirect_to books_path
   end
+  # rubocop:enable Metrics
 
   private
 
@@ -70,13 +71,7 @@ class BooksController < ApplicationController
   end
 
   def init_relation
-    @categories_id = []
-    @authors_id = []
-    @category = []
-    @author = []
-    Category.all.each { |category| @category << [category.title.to_s, category.id] }
-    Author.all.each { |author| @author << ["#{author.last_name} #{author.first_name}", author.id] }
-    @category.each { |i| @categories_id << i.last }
-    @author.each { |i| @authors_id << i.last }
+    @category = Category.all.map { |category| [category.title.to_s, category.id] }
+    @author = Author.all.map { |author| ["#{author.last_name} #{author.first_name}", author.id] }
   end
 end
