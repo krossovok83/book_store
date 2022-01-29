@@ -13,4 +13,21 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
+  def create
+    @book = Book.new(book_params)
+
+    if @book.save
+      redirect_to books_path
+    else
+      render :new, status: :unprocessable_entity
+
+    end
+  end
+
+  private
+
+  def book_params
+    params.require(:book).permit(:title, :author, :price, :count, :year, :description, :height, :weight, :depth,
+                                 :category)
+  end
 end
