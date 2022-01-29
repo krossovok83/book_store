@@ -1,0 +1,9 @@
+%h1.text-center Authors
+- @authors.each do |author|
+  .form-inline
+    %h3.general-title-margin.mr-55 #{author.last_name}, #{author.first_name}
+    = button_to "Edit", edit_author_path(author), method: :get, class: "btn btn-warning btn-sm mr-5"
+    = button_to "Destroy", author_path(author), method: :delete, class: "btn btn-danger btn-sm mr-5"
+.text-center
+  .a.btn.btn-primary
+    = link_to "Add New Author", new_author_path
