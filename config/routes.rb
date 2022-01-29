@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root "home#home"
   resources :authors, except: [:show]
   resources :categories, except: [:show]
+  get "/generate_books", to: "books#generate"
 end

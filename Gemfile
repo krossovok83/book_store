@@ -36,6 +36,7 @@ group :development, :test do
   gem "bullet", "~> 7.0.1"
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "fasterer", "~> 0.9.0"
+  gem "ffaker", "~> 2.20.0"
   gem "pry", "~> 0.14.1"
   gem "rspec-rails", "~> 5.0.2"
   gem "rubocop", "~> 1.25.0"
@@ -50,7 +51,6 @@ end
 group :test do
   gem "capybara", "~> 3.36.0"
   gem "database_cleaner", "~> 2.0.1"
-  gem "ffaker", "~> 2.20.0"
   gem "rails-controller-testing", "~> 1.0.5"
   gem "selenium-webdriver", "~> 4.1.0"
   gem "shoulda-matchers", "~> 5.1.0"

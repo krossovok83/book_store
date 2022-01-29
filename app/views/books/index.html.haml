@@ -59,7 +59,7 @@
       .col-xs-6.col-sm-3
         .general-thumb-wrap
           .thumbnail.general-thumbnail
-            %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+            %img.img-shadow.general-thumbnail-img{src: "#{book.cover}"}
             .thumb-hover
               .general-thumb-link-wrap
                 %a.thumb-hover-link{href: "books/#{book.id}"}
@@ -79,4 +79,5 @@
         %a.btn.btn-link{href: new_book_path} Add New Book
         %a.btn.btn-link{href: authors_path} Authors
         %a.btn.btn-link{href: categories_path} Categories
+        %a.btn.btn-link{href: generate_books_path} Generate Books
 
