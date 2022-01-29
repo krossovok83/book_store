@@ -15,13 +15,7 @@ class AuthorsController < ApplicationController
 
   def create
     @author = Author.new(author_params)
-
-    if @author.save
-      redirect_to authors_path
-    else
-      render :new, status: :unprocessable_entity
-
-    end
+    @author.save ? redirect_to(authors_path) : not_save
   end
 
   def edit
@@ -30,18 +24,12 @@ class AuthorsController < ApplicationController
 
   def update
     @author = Author.find(params[:id])
-
-    if @author.update(author_params)
-      redirect_to authors_path
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    @author.update(author_params) ? redirect_to(authors_path) : not_save
   end
 
   def destroy
     @author = Author.find(params[:id])
     @author.destroy
-
     redirect_to authors_path
   end
 
@@ -49,5 +37,9 @@ class AuthorsController < ApplicationController
 
   def author_params
     params.require(:author).permit(:first_name, :last_name, :id)
+  end
+
+  def not_save
+    render :new, status: :unprocessable_entity
   end
 end

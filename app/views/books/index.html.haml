@@ -1,4 +1,4 @@
-%h1.general-title-margin Сatalog
+%h1.general-title-margin Catalog
 .hidden-xs.clearfix
   .dropdowns.pull-right
     .dropdown.width-240
@@ -11,9 +11,9 @@
         %li
           %a{href: "#"} Popular first
         %li
-          %a{href: "#"} Price: Low to hight
+          %a{href: "#"} Price: Low to high
         %li
-          %a{href: "#"} Price: Hight to low
+          %a{href: "#"} Price: High to low
   %ul.list-inline.pt-10.mb-25.mr-240
     %li.mr-35
       %a.filter-link{href: "#"}
@@ -23,7 +23,7 @@
       %li.mr-35
         %a.filter-link{href: "#"}
           = category.title
-          %span.badge.general-badge 135
+          %span.badge.general-badge #{Book.where(category: category).size}
 .dropdowns.mb-25.visible-xs
   %p.lead.small.mb-10 Filter by category
   .dropdown
@@ -36,9 +36,9 @@
       %li
         %a{href: "#"} Popular first
       %li
-        %a{href: "#"} Price: Low to hight
+        %a{href: "#"} Price: Low to high
       %li
-        %a{href: "#"} Price: Hight to low
+        %a{href: "#"} Price: High to low
   %p.lead.small.mb-10 Sort by
   .dropdown
     %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
@@ -50,9 +50,9 @@
       %li
         %a{href: "#"} Popular first
       %li
-        %a{href: "#"} Price: Low to hight
+        %a{href: "#"} Price: Low to high
       %li
-        %a{href: "#"} Price: Hight to low
+        %a{href: "#"} Price: High to low
 .mb-120
   .row
     - @books.each do |book|
@@ -70,14 +70,13 @@
           %p.title #{book.title}
           %p.font-16.in-gold-500 #{number_to_currency(book.price, :unit => "€")}
           %span.divider-sm
-          %p.lead.small #{book.author}
+          %p.lead.small #{book.author.last_name} #{book.author.first_name}
   .text-center
-    %button.btn.btn-primary View More
+    %button.btn.btn-primary.mb-20 View More
     %br/
     - if can? :create, @books
-      .a.btn.btn-primary
-        = link_to "Add New Book", new_book_path
-      .a.btn.btn-primary
-        = link_to "Authors", authors_path
-      .a.btn.btn-primary
-        = link_to "Categories", categories_path
+      .btn-group-sm
+        %a.btn.btn-link{href: new_book_path} Add New Book
+        %a.btn.btn-link{href: authors_path} Authors
+        %a.btn.btn-link{href: categories_path} Categories
+

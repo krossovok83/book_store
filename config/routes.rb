@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :books
   root "home#home"
   resources :authors, except: [:show]
-  resources :categories
+  resources :categories, except: [:show]
 end
