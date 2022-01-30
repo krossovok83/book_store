@@ -9,6 +9,7 @@ gem "bootsnap", require: false
 gem "bootstrap-sass", "~> 3.3.7"
 gem "cancancan", "~> 3.3.0"
 gem "devise", "~> 4.8.1"
+gem "dotenv-rails", "~> 2.7.6"
 gem "execjs", "~> 2.8.1"
 gem "haml", "~> 5.2.2"
 gem "importmap-rails", "~> 1.0.2"

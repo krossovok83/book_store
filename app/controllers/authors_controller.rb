@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class AuthorsController < ApplicationController
+  load_and_authorize_resource
   def index
     @authors = Author.all.sort_by(&:id)
   end
