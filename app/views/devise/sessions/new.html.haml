@@ -1,7 +1,8 @@
 .text-center
   %h3.general-login-title Log In
-  %a.general-login-icon{href: user_facebook_omniauth_authorize_path, method: :post}
+  %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
     %i.fa.fa-facebook-official
+  = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path
   %p.general-login-text or
 = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "general-form"}) do |f|
   .field.form-group.mb-30

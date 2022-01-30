@@ -81,11 +81,17 @@
                 %a.nav-link{href: "#"} Orders
               %li
                 %a.nav-link{href: "#"} Settings
-              - unless current_user.nil?
+              %li
+                .fb-like{"data-share" => "true", "data-show-faces" => "true", "data-width" => "450"}
+              - if current_user.nil?
+                %li
+                  = button_to "Sign In", new_user_session_path, method: :get
+              - else
                 %li
                   %a.nav-link #{current_user.email}
                 %li
                   = button_to "Sign Out", destroy_user_session_path, method: :delete
+
           .col-sm-3
             %p.general-nav-mail support@bookstore.com
             %p.general-nav-number (555)-555-5555
@@ -102,4 +108,21 @@
               %li
                 %a.nav-link{href: "#"}
                   %i.fa.fa-instagram{'aria-hidden': "true"}
-  %script{src: "https://use.fontawesome.com/67602d7308.js"}
+    %script{src: "https://use.fontawesome.com/67602d7308.js"}
+    :javascript
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '464265345187345',
+          xfbml      : true,
+          version    : 'v12.0'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
