@@ -62,11 +62,8 @@
                   %li.divider{role: "separator"}
                   %li
                     %a{href: "devise/session#destroy"} Log out
-              %li
-                - if current_user.present?
-                  %a{href: user_edit_path(current_user.id)} My account
-                - else
-                  %a{href: new_user_session_path} My account
+                  %li
+                    %a{href: "#"} My account
     %main.container
       = yield
       %p.notice= notice

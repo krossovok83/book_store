@@ -263,7 +263,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -271,12 +271,12 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, ENV["FACEBOOK_ID"], ENV["FACEBOOK_SECRET"],
-                  token_params: { parse: :json }, callback_url: "http://localhost:3000/users/auth/facebook/callback",
-                  scope: "email", info_fields: "email,name",
-                  client_options: {
-                    site: 'https://graph.facebook.com/v12.0'
-                  }
+  # config.omniauth :facebook, ENV["FACEBOOK_ID"], ENV["FACEBOOK_SECRET"],
+  #                 token_params: { parse: :json }, callback_url: "http://localhost:3000/users/auth/facebook/callback",
+  #                 scope: "email", info_fields: "email,name",
+  #                 client_options: {
+  #                   site: 'https://graph.facebook.com/v12.0'
+  #                 }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

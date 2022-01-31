@@ -1,6 +1,6 @@
 .text-center
   %h3.general-login-title Log In
-  %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
+  %a.general-login-icon{href: "#"}
     %i.fa.fa-facebook-official
   %p.general-login-text or
 = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "general-form"}) do |f|
@@ -23,5 +23,5 @@
   .actions.text-center
     = f.submit "Log in", class: "btn btn-primary"
 .text-center
-  = button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path
+  = button_to "Sign in with Facebook"
   = render "devise/shared/links"
