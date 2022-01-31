@@ -45,7 +45,10 @@
                   %li
                     %a.collapse-link{href: "#"} Web design
               %li
-                %a{href: "#"} My account
+                - if current_user.nil?
+                  %a.collapse-link{href: new_user_session_path} Sign In
+                - else
+                  %a.collapse-link{href: new_user_session_path}= current_user.email
           .hidden-xs
             %ul.nav.navbar-nav
               %li
@@ -61,13 +64,18 @@
                     %a{href: "#"} Web design
                   %li.divider{role: "separator"}
                   %li
-                    %a{href: "devise/session#destroy"} Log out
-                  %li
-                    %a{href: "#"} My account
+                    %a
+                      = button_to "Log out", destroy_user_session_path, method: :delete
+              %li
+                - if current_user.nil?
+                  %a.collapse-link{href: new_user_session_path} Sign In
+                - else
+                  %a.collapse-link{href: new_user_session_path}= current_user.email
     %main.container
       = yield
-      %p.notice= notice
-      %p.alert= alert
+      .text-center
+        %p.notice= notice
+        %p.alert= alert
     %footer.navbar-inverse
       .container
         .row
@@ -81,16 +89,6 @@
                 %a.nav-link{href: "#"} Orders
               %li
                 %a.nav-link{href: "#"} Settings
-
-              - if current_user.nil?
-                %li
-                  = link_to "Sign In", new_user_session_path
-              - else
-                %li
-                  %a.nav-link #{current_user.email}
-                %li
-                  = button_to "Sign Out", destroy_user_session_path, method: :delete
-
           .col-sm-3
             %p.general-nav-mail support@bookstore.com
             %p.general-nav-number (555)-555-5555
