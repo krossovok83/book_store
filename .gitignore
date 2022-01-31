@@ -32,8 +32,6 @@
 .idea/
 
 .DS_Store
-pass_gm
-.env
 
 # Ignore application configuration
 /config/application.yml

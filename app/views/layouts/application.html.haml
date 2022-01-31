@@ -63,7 +63,10 @@
                   %li
                     %a{href: "devise/session#destroy"} Log out
               %li
-                %a{href: "#"} My account
+                - if current_user.present?
+                  %a{href: user_edit_path(current_user.id)} My account
+                - else
+                  %a{href: new_user_session_path} My account
     %main.container
       = yield
       %p.notice= notice
@@ -81,11 +84,10 @@
                 %a.nav-link{href: "#"} Orders
               %li
                 %a.nav-link{href: "#"} Settings
-              %li
-                .fb-like{"data-share" => "true", "data-show-faces" => "true", "data-width" => "450"}
+
               - if current_user.nil?
                 %li
-                  = button_to "Sign In", new_user_session_path, method: :get
+                  = link_to "Sign In", new_user_session_path
               - else
                 %li
                   %a.nav-link #{current_user.email}
@@ -108,21 +110,3 @@
               %li
                 %a.nav-link{href: "#"}
                   %i.fa.fa-instagram{'aria-hidden': "true"}
-    %script{src: "https://use.fontawesome.com/67602d7308.js"}
-    :javascript
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '464265345187345',
-          xfbml      : true,
-          version    : 'v12.0'
-        });
-        FB.AppEvents.logPageView();
-      };
-
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));

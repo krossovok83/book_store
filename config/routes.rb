@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :authors, except: [:show]
   resources :categories, except: [:show]
   get "/generate_books", to: "books#generate"
+  get "/users/:id/edit(.:format)", to: "users#edit", as: "user_edit"
 end

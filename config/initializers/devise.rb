@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'c06f4fb294e301ebd0ba16ed8be42e5e8843d9ab6736c7613c60bda00125d6709635c78dfb9cb17604ff372ea85970959f15489f5a7ce234b6bda9164014bf51'
+  # config.secret_key = 'c06f4fb294e301ebd0ba16ed8be42e5e8843d9ab6736c7613c60bda00125d6709635c78dfb9cb176'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,10 +24,10 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'book.store.korzhov@gmail.com'
+  config.mailer_sender = "book.store.korzhov@gmail.com"
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'UserMailer'
+  config.mailer = "UserMailer"
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -36,7 +36,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'a241b76e0c2ef42fc596f4dfe979f63ee1c69462994be3b99da45be9ec782dd14b8b8b9def0c78a709bcd168296e79b8a3ce29341e0f065d462a6c517297a523'
+  # config.pepper = 'a241b76e0c2ef42fc596f4dfe979f63ee1c69462994be3b99da45be9ec782dd14b8b8b9def0c78a709bcd168296e79b'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -271,7 +271,12 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, ENV["FACEBOOK_ID"], ENV["FACEBOOK_SECRET"], token_params: { parse: :json }, callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  config.omniauth :facebook, ENV["FACEBOOK_ID"], ENV["FACEBOOK_SECRET"],
+                  token_params: { parse: :json }, callback_url: "http://localhost:3000/users/auth/facebook/callback",
+                  scope: "email", info_fields: "email,name",
+                  client_options: {
+                    site: 'https://graph.facebook.com/v12.0'
+                  }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -38,17 +38,20 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-
+  # config.read_encrypted_secrets = true
   config.action_mailer.perform_caching = false
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
+    domain: "smtp.gmail.com",
     port: 587,
-    domain: "example.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
+    user_name: "#{ENV["GMAIL_USERNAME"]}@gmail.com",
     password:ENV["GMAIL_PASSWORD"]
   }
+
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
