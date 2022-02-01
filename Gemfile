@@ -5,7 +5,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 gem "aasm", "~> 5.2.0"
-# gem "activeadmin", "~> 2.9.0"
+
+gem 'activeadmin', github: 'tagliala/activeadmin', branch: 'feature/railties-7' # FIXME: revert to stable
+gem 'arbre', github: 'activeadmin/arbre' # FIXME: remove
+gem 'inherited_resources', github: 'activeadmin/inherited_resources' # FIXME: remove
+
 gem "bootsnap", require: false
 gem "bootstrap-sass", "~> 3.3.7"
 gem "cancancan", "~> 3.3.0"
