@@ -67,8 +67,8 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author_id, :price, :count, :year, :description, :height, :weight, :depth,
-                                 :category_id, :materials)
+    params.require(:book).permit(:id, :title, :author_id, :price, :count, :year, :description, :height, :weight,
+                                 :depth, :category_id, :materials)
   end
 
   def init_relation
