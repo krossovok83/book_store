@@ -4,20 +4,19 @@
     %li{'data-target': "#slider", 'data-slide-to': "1"}
     %li{'data-target': "#slider", 'data-slide-to': "2"}
   .carousel-inner{role: "listbox"}
-    - Book.last(1).each do |book|
-      .item.active
-        .row
-          .col-sm-5
-            .general-img-wrap
-              %img.img-shadow.general-thumbnail-img{src: "#{book.cover}"}
-          .col-sm-7
-            .mb-60
-              %h1 #{book.title}
-              %p.lead= book.description
-              %p.lead.small #{book.author.last_name} #{book.author.first_name}
-              .general-align
-                %button.disabled.btn Buy Now
-    - Book.last(3).tap(&:pop).each do |book|
+    .item.active
+      .row
+        .col-sm-5
+          .general-img-wrap
+            %img.img-shadow.general-thumbnail-img{src: "#{@active_book.cover}"}
+        .col-sm-7
+          .mb-60
+            %h1 #{@active_book.title}
+            %p.lead= @active_book.description
+            %p.lead.small #{@active_book.author.last_name} #{@active_book.author.first_name}
+            .general-align
+              %button.disabled.btn Buy Now
+    - @last_books.each do |book|
       .item
         .row
           .col-sm-5

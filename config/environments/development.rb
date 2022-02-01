@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -48,12 +50,11 @@ Rails.application.configure do
     port: 587,
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "#{ENV["GMAIL_USERNAME"]}@gmail.com",
-    password:ENV["GMAIL_PASSWORD"]
+    user_name: "#{ENV['GMAIL_USERNAME']}@gmail.com",
+    password: ENV["GMAIL_PASSWORD"]
   }
 
-
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
