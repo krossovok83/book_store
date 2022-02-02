@@ -6,3 +6,11 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '/*.rake'
+    - 'test//*.rb'
+    - 'spec/**/*.rb'
+    - 'app/admin/*.rb'
