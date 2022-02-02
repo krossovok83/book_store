@@ -17,12 +17,14 @@ ActiveAdmin.register Book do
   end
 
   filter :title
-  filter :author_id, label: "Author",
-                     as: :select,
-                     collection: Author.all.map { |author| ["#{author.last_name}, #{author.first_name}", author.id] }
-  filter :category_id, label: "Category",
-                       as: :select,
-                       collection: Category.all.map { |category| [category.title, category.id] }
+  filter :author_id,
+         label: "Author",
+         as: :select,
+         collection: -> { Author.all.map { |author| ["#{author.last_name}, #{author.first_name}", author.id] } }
+  filter :category_id,
+         label: "Category",
+         as: :select,
+         collection: -> { Category.all.map { |category| [category.title, category.id] } }
 
   show do
     attributes_table do
