@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/activeadmin/arbre.git
+  remote: https://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:x-oauth-basic@github.com/activeadmin/arbre
   revision: dcea09da31322f2bc9bdfc32eb14ec0aaf34ae92
   specs:
     arbre (1.4.0)
@@ -7,7 +7,7 @@ GIT
       ruby2_keywords (>= 0.0.2, < 1.0)
 
 GIT
-  remote: https://github.com/activeadmin/inherited_resources.git
+  remote: https://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:x-oauth-basic@github.com/activeadmin/inherited_resources
   revision: 19bb0b2f37c8b69d3a92ac1166f0601da52f3c23
   specs:
     inherited_resources (1.13.1)
@@ -17,8 +17,8 @@ GIT
       responders (>= 2, < 4)
 
 GIT
-  remote: https://github.com/tagliala/activeadmin.git
-  revision: 5d78c742782c66b215c0fb724035348d079b4ef7
+  remote: https://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:x-oauth-basic@github.com/tagliala/activeadmin
+  revision: d1492c54e76871d95f3a7ff20e445b48f455d4cb
   branch: feature/railties-7
   specs:
     activeadmin (2.9.0)

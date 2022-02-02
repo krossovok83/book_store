@@ -5,11 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 gem "aasm", "~> 5.2.0"
-
-gem 'activeadmin', github: 'tagliala/activeadmin', branch: 'feature/railties-7' # FIXME: revert to stable
-gem 'arbre', github: 'activeadmin/arbre' # FIXME: remove
-gem 'inherited_resources', github: 'activeadmin/inherited_resources' # FIXME: remove
-
+gem "activeadmin", git: "https://#{ENV['GITHUB_TOKEN']}:x-oauth-basic@github.com/tagliala/activeadmin", branch: "feature/railties-7" # FIXME: revert to stable
+gem "arbre", git: "https://#{ENV['GITHUB_TOKEN']}:x-oauth-basic@github.com/activeadmin/arbre" # FIXME: remove
 gem "bootsnap", require: false
 gem "bootstrap-sass", "~> 3.3.7"
 gem "cancancan", "~> 3.3.0"
@@ -19,6 +16,7 @@ gem "execjs", "~> 2.8.1"
 gem "figaro", "~> 1.2.0"
 gem "haml", "~> 5.2.2"
 gem "importmap-rails", "~> 1.0.2"
+gem "inherited_resources", git: "https://#{ENV['GITHUB_TOKEN']}:x-oauth-basic@github.com/activeadmin/inherited_resources" # FIXME: remove
 gem "jbuilder", "~> 2.11.5"
 gem "jquery-rails", "~> 4.4.0"
 gem "mini_magick", "~> 4.11.0"
