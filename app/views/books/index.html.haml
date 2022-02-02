@@ -73,11 +73,3 @@
           %p.lead.small #{book.author.last_name} #{book.author.first_name}
   .text-center
     %button.btn.btn-primary.mb-20 View More
-    %br/
-    - if can? :create, @books
-      .btn-group-sm
-        %a.btn.btn-link{href: new_book_path} Add New Book
-        %a.btn.btn-link{href: authors_path} Authors
-        %a.btn.btn-link{href: categories_path} Categories
-        %a.btn.btn-link{href: generate_books_path} Generate Books
-

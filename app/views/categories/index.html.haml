@@ -1,9 +1,0 @@
-%h1.text-center Categories
-- @categories.each do |category|
-  .form-inline
-    %h3.general-title-margin.mr-55 #{category.title}
-    = button_to "Edit", edit_category_path(category), method: :get, class: "btn btn-warning btn-sm mr-5"
-    = button_to "Destroy", category_path(category), method: :delete, class: "btn btn-danger btn-sm mr-5"
-.text-center
-  .a.btn.btn-primary
-    = link_to "Add New Category", new_category_path
