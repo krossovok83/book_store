@@ -3,29 +3,26 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
   def index
-    @books = Book.all
+    if params[:category_title] == "all"
+      @books = Book.all.order(custom_sort(params[:sort]))
+    else
+      @books = Book.where(category_id: Category.find_by(title: params[:category_title]).id)
+    end
   end
 
   def show
     @book = Book.find(params[:id])
   end
 
-  # def generate
-  #   book = Book.new(title: ::FFaker::Book.title,
-  #                   author_id: @author.map(&:last).sample,
-  #                   category_id: @category.map(&:last).sample,
-  #                   price: rand(10.0..90.0),
-  #                   count: rand(5..30),
-  #                   year: rand(1980..2021),
-  #                   description: ::FFaker::Book.description,
-  #                   height: rand(10.0..30.0),
-  #                   weight: rand(10.0..30.0),
-  #                   depth: rand(0.4..3),
-  #                   created_at: DateTime.now,
-  #                   updated_at: DateTime.now,
-  #                   materials: "#{%w[Hardcover Softcover].sample}, #{%w[Glossy Mate].sample}paper",
-  #                   cover: ::FFaker::Book.orly_cover)
-  #   book.save
-  #   redirect_to books_path
-  # end
+  private
+
+  def custom_sort(sort)
+    case sort
+    when "newest_first" then "created_at"
+    when "price_up" then "price"
+    when "price_down" then "price DESC"
+    else
+      "year"
+    end
+  end
 end

@@ -7,21 +7,21 @@
         %i.fa.fa-angle-down.dropdown-icon.pull-right
       %ul.dropdown-menu
         %li
-          %a{href: "#"} Newest first
+          %a{href: category_books_path(sort: "newest_first")} Newest first
         %li
           %a{href: "#"} Popular first
         %li
-          %a{href: "#"} Price: Low to high
+          %a{href: category_books_path(sort: "price_up")} Price: Low to high
         %li
-          %a{href: "#"} Price: High to low
+          %a{href: category_books_path(sort: "price_down")} Price: High to low
   %ul.list-inline.pt-10.mb-25.mr-240
     %li.mr-35
-      %a.filter-link{href: "#"}
+      %a.filter-link{href: category_books_path("all")}
         All
         %span.badge.general-badge #{Book.count}
     - Category.all.sort_by { |category| category.title }.each do |category|
       %li.mr-35
-        %a.filter-link{href: "#"}
+        %a.filter-link{href: category_books_path(category.title)}
           = category.title
           %span.badge.general-badge #{Book.where(category: category).size}
 .dropdowns.mb-25.visible-xs

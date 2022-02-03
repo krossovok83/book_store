@@ -57,11 +57,10 @@
                 %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
                 %ul.dropdown-menu
                   %li
-                    %a{href: "#"} Mobile development
-                  %li
-                    %a{href: "#"} Photo
-                  %li
-                    %a{href: "#"} Web design
+                    %a{href: category_books_path("all", sort: "newest_first")} All
+                  - Category.all.order("title").each do |category|
+                    %li
+                      %a{href: category_books_path("#{category.title}", sort: "newest_first")} #{category.title}
                   %li.divider{role: "separator"}
                   %li
                     %a
@@ -87,7 +86,7 @@
               %li
                 = link_to "Home", root_path
               %li
-                %a.nav-link{href: books_path} Shop
+                %a.nav-link{href: category_books_path("all", sort: "newest_first")} Shop
               %li
                 %a.nav-link{href: "#"} Orders
               %li

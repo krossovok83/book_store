@@ -2,9 +2,14 @@
 
 Rails.application.routes.draw do
   devise_for :users # , ActiveAdmin::Devise.config
+
   ActiveAdmin.routes(self)
-  resources :books, only: %i[index show]
+
+  resources :categories, param: :title, only: [] do
+    resources :books, only: %i[index]
+  end
+
+  resource :books, only: %i[show]
+
   root "home#home"
-  resources :authors, except: [:show]
-  resources :categories, except: [:show]
 end
