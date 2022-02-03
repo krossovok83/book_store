@@ -55,4 +55,5 @@
           %span.divider-sm
           %p.lead.small #{book.author.last_name} #{book.author.first_name}
   .text-center
+    != pagy_nav(@pagy_books)
     %button.btn.btn-primary.mb-20 View More
