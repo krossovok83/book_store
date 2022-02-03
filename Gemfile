@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 gem "aasm", "~> 5.2.0"
-gem "activeadmin", git: "https://#{ENV['GITHUB_TOKEN']}:x-oauth-basic@github.com/tagliala/activeadmin", branch: "feature/railties-7" # FIXME: revert to stable
+gem "activeadmin", git: "https://#{ENV['GITHUB_TOKEN']}:x-oauth-basic@github.com/tagliala/activeadmin", branch: "feature/railties-7", ref: "d1492c5" # FIXME: revert to stable
 gem "arbre", git: "https://#{ENV['GITHUB_TOKEN']}:x-oauth-basic@github.com/activeadmin/arbre" # FIXME: remove
 gem "bootsnap", require: false
 gem "bootstrap-sass", "~> 3.3.7"
