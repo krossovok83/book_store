@@ -18,9 +18,9 @@ class BooksController < ApplicationController
 
   def custom_sort(sort)
     case sort
-    when "newest_first" then "created_at"
-    when "price_up" then "price"
-    when "price_down" then "price DESC"
+    when "Newest first" then "created_at"
+    when "Price: Low to high" then "price"
+    when "Price: High to low" then "price DESC"
     else
       "year"
     end

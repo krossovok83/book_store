@@ -3,17 +3,10 @@
   .dropdowns.pull-right
     .dropdown.width-240
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "true"}
-        Newest first
+        = params[:sort]
         %i.fa.fa-angle-down.dropdown-icon.pull-right
       %ul.dropdown-menu
-        %li
-          %a{href: category_books_path(sort: "newest_first")} Newest first
-        %li
-          %a{href: "#"} Popular first
-        %li
-          %a{href: category_books_path(sort: "price_up")} Price: Low to high
-        %li
-          %a{href: category_books_path(sort: "price_down")} Price: High to low
+        = render "sort"
   %ul.list-inline.pt-10.mb-25.mr-240
     %li.mr-35
       %a.filter-link{href: category_books_path("all")}
@@ -28,31 +21,21 @@
   %p.lead.small.mb-10 Filter by category
   .dropdown
     %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-      Newest first
+      = params[:category_title]
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
       %li
-        %a{href: "#"} Newest first
-      %li
-        %a{href: "#"} Popular first
-      %li
-        %a{href: "#"} Price: Low to high
-      %li
-        %a{href: "#"} Price: High to low
+        %a{href: category_books_path("All")} All
+      - Category.all.sort_by { |category| category.title }.each do |category|
+        %li
+          %a{href: category_books_path(category.title)} #{category.title}
   %p.lead.small.mb-10 Sort by
   .dropdown
     %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-      Newest first
+      = params[:sort]
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
-      %li
-        %a{href: "#"} Newest first
-      %li
-        %a{href: "#"} Popular first
-      %li
-        %a{href: "#"} Price: Low to high
-      %li
-        %a{href: "#"} Price: High to low
+      = render "sort"
 .mb-120
   .row
     - @books.each do |book|
