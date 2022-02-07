@@ -23,7 +23,6 @@ gem "jquery-rails", "~> 4.4.0"
 gem "mini_magick", "~> 4.11.0"
 # gem "omniauth-facebook", "~> 9.0.0"
 # gem "omniauth-rails_csrf_protection"
-gem "pagy", "~> 5.9.1"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "pundit", "~> 2.1.1"
@@ -36,6 +35,7 @@ gem "stimulus-rails", "~> 1.0.2"
 gem "therubyracer", "~> 0.12.3"
 gem "turbo-rails", "~> 1.0.1"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem "will_paginate", "~> 3.3"
 
 group :development, :test do
   gem "brakeman", "~> 5.2.0"

@@ -5,9 +5,3 @@ import "controllers/hello_controller"
 import "vendor/jquery"
 import "vendor/bootstrap"
 
-// $("#book_year").datepicker({
-//     format: "yyyy",
-//     viewMode: "years",
-//     minViewMode: "years"
-// });
-

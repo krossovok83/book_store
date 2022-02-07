@@ -2,11 +2,12 @@
 
 class BooksController < ApplicationController
   load_and_authorize_resource
+
   def index
-    if params[:category_title] == "All"
-      @pagy_books, @books = pagy(Book.all.order(custom_sort(params[:sort])))
+    if params[:category_title] == "All" || params[:category_title].nil?
+      @books = Book.all.order(custom_sort(params[:sort])).paginate(page: params[:page])
     else
-      @pagy_books, @books = pagy(Book.where(category_id: Category.find_by(title: params[:category_title]).id))
+      @books = Book.where(category_id: Category.find_by(title: params[:category_title]).id).paginate(page: params[:page])
     end
   end
 
