@@ -2,7 +2,7 @@
 
 ActiveAdmin.register User do
   permit_params :id, :email, :password, :password_confirmation, :reset_password_token, :reset_password_sent_at,
-                :remember_created_at, :created_at, :updated_at, :provider, :uid, :name, :image
+                :remember_created_at, :created_at, :updated_at, :provider, :uid, :name, :image, :admin
 
   index do
     selectable_column
