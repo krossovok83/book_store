@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :shipping_address, dependent: :destroy
   has_one :billing_address, dependent: :destroy
+  has_many :review, dependent: :destroy
 end

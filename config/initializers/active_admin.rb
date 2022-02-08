@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.config.after_initialize do
   ActiveAdmin.setup do |config|
     # == Site Title
@@ -125,7 +127,7 @@ Rails.application.config.after_initialize do
     # This allows your users to comment on any resource registered with Active Admin.
     #
     # You can completely disable comments:
-    # config.comments = false
+    config.comments = false
     #
     # You can change the name under which comments are registered:
     # config.comments_registration_name = 'AdminComment'
@@ -158,7 +160,7 @@ Rails.application.config.after_initialize do
     # You can exclude possibly sensitive model attributes from being displayed,
     # added to forms, or exported by default by ActiveAdmin
     #
-    config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+    config.filter_attributes = %i[encrypted_password password password_confirmation]
 
     # == Localize Date/Time Format
     #
@@ -253,7 +255,7 @@ Rails.application.config.after_initialize do
     #
     # To disable/customize for the :admin namespace:
     #
-    #   config.namespace :admin do |admin|
+    # config.namespace :admin do |admin|
     #
     #     # Disable the links entirely
     #     admin.download_links = false
@@ -264,8 +266,8 @@ Rails.application.config.after_initialize do
     #     # Enable/disable the links based on block
     #     #   (for example, with cancan)
     #     admin.download_links = proc { can?(:view_download_links) }
-    #
-    #   end
+    #     admin.comments = false
+    # end
 
     # == Pagination
     #
