@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :books, only: :index
   end
 
-  resources :books, only: :show
+  resources :books, only: :show do
+    resources :reviews, only: :create
+  end
 
   resource :addresses
 
