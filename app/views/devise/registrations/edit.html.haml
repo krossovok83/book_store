@@ -42,7 +42,7 @@
               %label.control-label.input-label{:for => "phone"} Phone
               %input#phone.form-control{:name => "phone", :placeholder => "Example +355 66 123 4567", :type => "tel", value: current_user.billing_address&.phone}/
             .text-center.general-text-align
-              %button.btn{type: "submit"} Save
+              %button.btn.btn-default{type: "submit"} Save
         .col-md-5.col-md-offset-1.mb-25
           %form{action: "/addresses", method: "patch"}
             %input{:name => "address_type", :type => "hidden", :value => "shipping"}/
@@ -71,39 +71,43 @@
               %label.control-label.input-label{:for => "phone"} Phone
               %input#phone.form-control{:name => "phone", :placeholder => "Example +355 66 123 4567", :type => "tel", value: current_user.shipping_address&.phone}/
             .text-center.general-text-align
-              %button.btn{type: "submit"} Save
+              %button.btn.btn-default{type: "submit"} Save
     #privacy.tab-pane.fade{:role => "tabpanel"}
       .row.mb-60
-        .col-sm-5
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "general-form-md col-sm-5" }) do |f|
           %p.in-gold-500.font-18.mb-25 Email
-          %form.general-form-md
-            .form-group.mb-35
-              %label.control-label.input-label{:for => "email"} Enter Email
-              %input#email.form-control{:name => "email", value: current_user.email, :type => "email"}/
-            .general-text-align
-              %button.btn.btn-default.mb-35 Save
-        .col-sm-5.col-sm-offset-1
+          .field.form-group.mb-35
+            = f.label :email, class: "control-label input-label"
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+          .field.form-group.mb-30
+            = f.label :current_password, class: "control-label input-label"
+            = f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Current Password"
+          .actions.general-text-align
+            = f.submit "Save", class: "btn btn-default mb-35"
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "general-form-md divider-lg-bottom pb-25 col-sm-5 col-sm-offset-1" }) do |f|
           %p.in-gold-500.font-18.mb-25 Password
-          %form.general-form-md.divider-lg-bottom.pb-25
-            .form-group.mb-30
-              %label.control-label.input-label{:for => "oldPassword"} Old Password
-              %input#oldPassword.form-control{:name => "password", :placeholder => "Old Password", :type => "password"}/
-            .form-group.mb-30
-              %label.control-label.input-label{:for => "password"} New Password
-              %input#password.form-control{:name => "password", :placeholder => "New Password", :type => "password"}/
-            .form-group.mb-40
-              %label.control-label.input-label{:for => "confirmPassword"} Confirm Password
-              %input#confirmPassword.form-control{:name => "password", :placeholder => "Confirm Password", :type => "password"}/
-            .general-text-align
-              %button.btn.disabled.mb-10 Save
+          .field.form-group.mb-30
+            = f.label :current_password, class: "control-label input-label"
+            = f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Old Password"
+          .field.form-group.mb-30
+            = f.label :password, class: "control-label input-label"
+            = f.password_field :password, autocomplete: "new-password", class: "form-control"
+            - if @minimum_password_length
+              %em
+                = @minimum_password_length
+                characters minimum
+          .form-group.mb-40
+            = f.label :password_confirmation, class: "control-label input-label"
+            = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+          .actions.general-text-align
+            = f.submit "Save", class: "btn btn-default mb-10"
         .col-sm-12
           %p.in-gold-500.font-18.mb-25 Remove Account
-          %form
-            .general-settings-btn
-              %button.btn.disabled.mb-20 Please Remove My Account
-            .form-group.checkbox.general-settings-checkbox
-              %label.checkbox-label
-                %input.checkbox-input{:hidden => "true", :type => "checkbox"}/
-                %span.checkbox-icon
-                  %i.fa.fa-check
-                %span.checkbox-text I understand that all data will be lost
+          .general-settings-btn
+            = button_to "Please Remove My Account", registration_path(resource_name), method: :delete, class: "btn btn-default mb-20"
+          .form-group.checkbox.general-settings-checkbox
+            %label.checkbox-label
+              %input.checkbox-input{:hidden => "true", :type => "checkbox"}/
+              %span.checkbox-icon
+                %i.fa.fa-check
+              %span.checkbox-text I understand that all data will be lost

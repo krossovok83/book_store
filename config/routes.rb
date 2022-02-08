@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
   resources :books, only: :show
 
-  resources :users, only: %i[edit update]
-
   resource :addresses
 
   root "home#home"
