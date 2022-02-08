@@ -4,11 +4,12 @@ class BooksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if params[:category_title] == "All" || params[:category_title].nil?
-      @books = Book.all.order(custom_sort(params[:sort])).paginate(page: params[:page])
-    else
-      @books = Book.where(category_id: Category.find_by(title: params[:category_title]).id).paginate(page: params[:page])
-    end
+    books = if params[:category_title] == "All" || params[:category_title].nil?
+              Book.all
+            else
+              Book.where(category_id: find_category_id)
+            end
+    @books = books.order(custom_sort(params[:sort])).paginate(page: params[:page])
   end
 
   def show
@@ -27,5 +28,9 @@ class BooksController < ApplicationController
     else
       "year"
     end
+  end
+
+  def find_category_id
+    Category.find_by(title: params[:category_title]).id
   end
 end

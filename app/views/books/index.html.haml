@@ -9,12 +9,12 @@
         = render "sort"
   %ul.list-inline.pt-10.mb-25.mr-240
     %li.mr-35
-      %a.filter-link{href: category_books_path("all")}
+      %a.filter-link{href: category_books_path("All", sort: params[:sort])}
         All
         %span.badge.general-badge #{Book.count}
     - Category.all.sort_by { |category| category.title }.each do |category|
       %li.mr-35
-        %a.filter-link{href: category_books_path(category.title)}
+        %a.filter-link{href: category_books_path(category.title, sort: params[:sort])}
           = category.title
           %span.badge.general-badge #{Book.where(category: category).size}
 .dropdowns.mb-25.visible-xs
@@ -45,7 +45,7 @@
             %img.img-shadow.general-thumbnail-img{src: "#{book.cover}"}
             .thumb-hover
               .general-thumb-link-wrap
-                %a.thumb-hover-link{href: "books/#{book.id}"}
+                %a.thumb-hover-link{href: "/books/#{book.id}"}
                   %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
                 %a.thumb-hover-link{href: "#"}
                   %i.fa.fa-shopping-cart.thumb-icon

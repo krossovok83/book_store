@@ -6,10 +6,14 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :categories, param: :title, only: [] do
-    resources :books, only: %i[index]
+    resources :books, only: :index
   end
 
-  resource :books, only: %i[show]
+  resources :books, only: :show
+
+  resources :users, only: %i[edit update]
+
+  resource :addresses
 
   root "home#home"
 end

@@ -1,0 +1,109 @@
+%main.container
+  %h1.general-title-margin Settings
+  %ul.nav.clearfix.mb-20{:role => "tablist"}
+    %li.tab-item.active{:role => "presentation"}
+      %a.tab-link{"aria-controls" => "address", "data-toggle" => "tab", :href => "#address", :role => "tab"} Address
+    %li.tab-item{:role => "presentation"}
+      %a.tab-link{"aria-controls" => "privacy", "data-toggle" => "tab", :href => "#privacy", :role => "tab"} Privacy
+  .tab-content
+    #address.tab-pane.fade.in.active.general-main-wrap{:role => "tabpanel"}
+      .hidden-xs.hidden-sm
+        .row
+          .col-md-5
+            %h3.general-subtitle.mt-0 Billing Address
+          .col-md-5.col-md-offset-1
+            %h3.general-subtitle.mt-0 Shipping Address
+      .row
+        .col-md-5.mb-40
+          %form{action: "/addresses", method: "patch"}
+            %input{:name => "address_type", :type => "hidden", :value => "billing"}/
+            .visible-xs.visible-sm
+              %h3.general-subtitle.mt-0 Billing Address
+            .form-group.has-error
+              %label.control-label.input-label{:for => "firstName"} First Name
+              %input#firstName.form-control{:name => "first_name", :placeholder => "First Name", :type => "text", value: current_user.billing_address&.first_name}/
+              %span.help-block Please enter your first name
+            .form-group
+              %label.control-label.input-label{:for => "lastName"} Last Name
+              %input#lastName.form-control{:name => "last_name", :placeholder => "Last Name", :type => "text", value: current_user.billing_address&.last_name}/
+            .form-group
+              %label.control-label.input-label{:for => "address"} Address
+              %input#address.form-control{:name => "address", :placeholder => "Address", :type => "text", value: current_user.billing_address&.address}/
+            .form-group
+              %label.control-label.input-label{:for => "city"} City
+              %input#city.form-control{:name => "city", :placeholder => "City", :type => "text", value: current_user.billing_address&.city}/
+            .form-group
+              %label.control-label.input-label{:for => "zip"} Zip
+              %input#zip.form-control{:name => "zip", :placeholder => "Zip", :type => "text", value: current_user.billing_address&.zip}/
+            .form-group
+              %label.control-label.input-label{:for => "country"} Country
+              %input#country.form-control{:name => "country", :placeholder => "Select a country", :type => "text", value: current_user.billing_address&.country}/
+            .form-group.mb-60
+              %label.control-label.input-label{:for => "phone"} Phone
+              %input#phone.form-control{:name => "phone", :placeholder => "Example +355 66 123 4567", :type => "tel", value: current_user.billing_address&.phone}/
+            .text-center.general-text-align
+              %button.btn{type: "submit"} Save
+        .col-md-5.col-md-offset-1.mb-25
+          %form{action: "/addresses", method: "patch"}
+            %input{:name => "address_type", :type => "hidden", :value => "shipping"}/
+            .visible-xs.visible-sm
+              %h3.general-subtitle.mt-0 Shipping Address
+            .form-group.has-error
+              %label.control-label.input-label{:for => "firstName"} First Name
+              %input#firstName.form-control{:name => "first_name", :placeholder => "First Name", :type => "text", value: current_user.shipping_address&.first_name}/
+              %span.help-block Please enter your first name
+            .form-group
+              %label.control-label.input-label{:for => "lastName"} Last Name
+              %input#lastName.form-control{:name => "last_name", :placeholder => "Last Name", :type => "text", value: current_user.shipping_address&.last_name}/
+            .form-group
+              %label.control-label.input-label{:for => "address"} Address
+              %input#address.form-control{:name => "address", :placeholder => "Address", :type => "text", value: current_user.shipping_address&.address}/
+            .form-group
+              %label.control-label.input-label{:for => "city"} City
+              %input#city.form-control{:name => "city", :placeholder => "City", :type => "text", value: current_user.shipping_address&.city}/
+            .form-group
+              %label.control-label.input-label{:for => "zip"} Zip
+              %input#zip.form-control{:name => "zip", :placeholder => "Zip", :type => "text", value: current_user.shipping_address&.zip}/
+            .form-group
+              %label.control-label.input-label{:for => "country"} Country
+              %input#country.form-control{:name => "country", :placeholder => "Select a country", :type => "text", value: current_user.shipping_address&.country}/
+            .form-group.mb-55
+              %label.control-label.input-label{:for => "phone"} Phone
+              %input#phone.form-control{:name => "phone", :placeholder => "Example +355 66 123 4567", :type => "tel", value: current_user.shipping_address&.phone}/
+            .text-center.general-text-align
+              %button.btn{type: "submit"} Save
+    #privacy.tab-pane.fade{:role => "tabpanel"}
+      .row.mb-60
+        .col-sm-5
+          %p.in-gold-500.font-18.mb-25 Email
+          %form.general-form-md
+            .form-group.mb-35
+              %label.control-label.input-label{:for => "email"} Enter Email
+              %input#email.form-control{:name => "email", value: current_user.email, :type => "email"}/
+            .general-text-align
+              %button.btn.btn-default.mb-35 Save
+        .col-sm-5.col-sm-offset-1
+          %p.in-gold-500.font-18.mb-25 Password
+          %form.general-form-md.divider-lg-bottom.pb-25
+            .form-group.mb-30
+              %label.control-label.input-label{:for => "oldPassword"} Old Password
+              %input#oldPassword.form-control{:name => "password", :placeholder => "Old Password", :type => "password"}/
+            .form-group.mb-30
+              %label.control-label.input-label{:for => "password"} New Password
+              %input#password.form-control{:name => "password", :placeholder => "New Password", :type => "password"}/
+            .form-group.mb-40
+              %label.control-label.input-label{:for => "confirmPassword"} Confirm Password
+              %input#confirmPassword.form-control{:name => "password", :placeholder => "Confirm Password", :type => "password"}/
+            .general-text-align
+              %button.btn.disabled.mb-10 Save
+        .col-sm-12
+          %p.in-gold-500.font-18.mb-25 Remove Account
+          %form
+            .general-settings-btn
+              %button.btn.disabled.mb-20 Please Remove My Account
+            .form-group.checkbox.general-settings-checkbox
+              %label.checkbox-label
+                %input.checkbox-input{:hidden => "true", :type => "checkbox"}/
+                %span.checkbox-icon
+                  %i.fa.fa-check
+                %span.checkbox-text I understand that all data will be lost
