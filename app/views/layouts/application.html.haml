@@ -39,7 +39,7 @@
                 %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
                 %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
                   %li
-                    %a.collapse-link{href: category_books_path("all", sort: "newest_first")} All
+                    %a.collapse-link{href: category_books_path("All", sort: "Newest first")} All
                   - Category.all.order("title").each do |category|
                     %li
                       %a.collapse-link{href: category_books_path("#{category.title}", sort: "newest_first")} #{category.title}
@@ -60,7 +60,7 @@
                 %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
                 %ul.dropdown-menu
                   %li
-                    %a{href: category_books_path("all", sort: "newest_first")} All
+                    %a{href: category_books_path("All", sort: "Newest first")} All
                   - Category.all.order("title").each do |category|
                     %li
                       %a{href: category_books_path("#{category.title}", sort: "newest_first")} #{category.title}
@@ -87,9 +87,9 @@
           .col-sm-9
             %ul.list-inline.general-align.mb-25
               %li
-                = link_to "Home", root_path
+                %a.nav-link{href: root_path} Home
               %li
-                %a.nav-link{href: category_books_path("all", sort: "newest_first")} Shop
+                %a.nav-link{href: category_books_path("All", sort: "Newest First")} Shop
               %li
                 %a.nav-link{href: "#"} Orders
               %li
