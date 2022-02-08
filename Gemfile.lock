@@ -19,6 +19,7 @@ GIT
 GIT
   remote: https://:x-oauth-basic@github.com/tagliala/activeadmin
   revision: d1492c54e76871d95f3a7ff20e445b48f455d4cb
+  ref: d1492c5
   branch: feature/railties-7
   specs:
     activeadmin (2.9.0)
@@ -417,7 +418,7 @@ GEM
     will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.3)
+    zeitwerk (2.5.4)
 
 PLATFORMS
   x86_64-darwin-19
