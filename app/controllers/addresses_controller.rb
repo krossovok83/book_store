@@ -2,7 +2,7 @@
 
 class AddressesController < ApplicationController
   def new(type)
-    type.create!(id: Address.ids.last + 1, user_id: current_user.id)
+    type.create!(id: (Address.ids.last || 0) + 1, user_id: current_user.id)
   end
 
   def update
