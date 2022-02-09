@@ -5,3 +5,11 @@ import "controllers/hello_controller"
 import "vendor/jquery"
 import "vendor/bootstrap"
 
+let counter = document.getElementById("counter_on_book_page");
+
+document.getElementById("counter_plus").addEventListener("click", function() {
+    counter.value +=1;
+})
+document.getElementById("counter_minus").addEventListener("click", function() {
+    counter.value -=1;
+})

@@ -21,15 +21,17 @@
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10 #{number_to_currency(@book.price, :unit => "€")}
-        .col-xs-5.col-md-3
-          .input-group.general-position
-            %a.input-link{href: "#"}
-              %i.fa.fa-minus.line-height-40
-            %input.form-control.quantity-input{type: "text"}
-            %a.input-link{href: "#"}
-              %i.fa.fa-plus.line-height-40
-        .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position Add to Cart
+        %form{action: carts_path, method: "post"}
+          %input{type: "hidden", name: "book_id", value: @book.id}
+          .col-xs-5.col-md-3
+            .input-group.general-position
+              %a#counter_minus.input-link{href: "#"}
+                %i.fa.fa-minus.line-height-40
+              %input#counter_on_book_page.form-control.quantity-input{name: "count", value: 1, type: "number", min: 1, max: @book.count}
+              %a#counter_plus.input-link{href: "#"}
+                %i.fa.fa-plus.line-height-40
+          .col-xs-7.col-md-5
+            %button.btn.btn-default.pull-right.general-position{type: "submit"} Add to Cart
       %p.small.text-success Available For Order: #{@book.count}
       .general-info-wrap.divider-lg
         %p Description
