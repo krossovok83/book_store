@@ -6,8 +6,8 @@ class CartsController < ApplicationController
   end
 
   def create
-    params[:count].times do
-      @cart = Cart.new(book_id: params[:book_id], session: session[:current_user])
+    params[:count].to_i.times do
+      @cart = Cart.new(params_id_session)
       @cart.save
     end
     redirect_back_or_to(root_path)
@@ -15,19 +15,14 @@ class CartsController < ApplicationController
 
   def index
     cart = Cart.where(session: session[:current_user])
-    @counted_book = count_book(cart)
+    @counted_book = count_book(cart).sort
     @subtotal = cart.map { |i| i.book.price }.sum
     @order_total = order_total
   end
 
   def destroy
-    @cart = Cart.find(params[:id])
-    @cart.destroy
-    redirect_to carts_path
-  end
-
-  def update
-    binding.pry
+    params[:count].present? ? Cart.find_by(params_id_session).destroy : Cart.where(params_id_session).destroy_all
+    redirect_to carts_path, status: 303
   end
 
   private
@@ -41,4 +36,8 @@ class CartsController < ApplicationController
   end
 
   def coupon; end
+
+  def params_id_session
+    { book_id: params[:book_id], session: session[:current_user] }
+  end
 end

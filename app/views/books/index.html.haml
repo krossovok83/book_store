@@ -47,8 +47,8 @@
               .general-thumb-link-wrap
                 %a.thumb-hover-link{href: "/books/#{book.id}"}
                   %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-                = button_to carts_path, form_class: "thumb-hover-link", params: { book_id: book.id } do
-                  %span.fa.fa-shopping-cart.thumb-icon
+                %a.thumb-hover-link{href: carts_path(book_id: book.id, count: 1), "data-turbo-method": :post}
+                  %i.fa.fa-shopping-cart.thumb-icon
         .general-thumb-info
           %p.title #{book.title}
           %p.font-16.in-gold-500 #{number_to_currency(book.price, :unit => "€")}
