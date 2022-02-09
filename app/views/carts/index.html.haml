@@ -2,32 +2,33 @@
   %h1.general-title-margin Cart
   .visible-xs
     .general-cart-item.divider-lg-bottom.mb-30
-      %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
-        %span{'aria-hidden': "true"} &times;
-      .general-img-wrap-table
-        %img.cart-img-shadow{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-      %p.title Android Programming for Beginners
-      %table.table
-        %tr
-          %td
-            %span.in-grey-600 Price
-          %td
-            %span.font-16.in-gold-500 €28.50
-        %tr
-          %td.vertical-middle
-            %span.in-grey-600 Quantity
-          %td
-            .input-group
-              %a.input-link{href: "#"}
-                %i.fa.fa-minus.line-height-40
-              %input.form-control.quantity-input{type: "text"}
-              %a.input-link{href: "#"}
-                %i.fa.fa-plus.line-height-40
-        %tr
-          %td
-            %span.in-grey-600 SubTotal
-          %td
-            %span.font-16.in-gold-500 €32.90
+      - @counted_book.each do |book, count|
+        %a.close.general-cart-close{type: "button", 'aria-label': "Close", href: carts_path(book_id: book.id), "data-turbo-method": :delete}
+          %span{'aria-hidden': "true"} &times;
+        .general-img-wrap-table
+          %img.cart-img-shadow{src: book.cover}
+        %p.title= book.title
+        %table.table
+          %tr
+            %td
+              %span.in-grey-600 Price
+            %td
+              %span.font-16.in-gold-500= number_to_currency(book.price, :unit => "€")
+          %tr
+            %td.vertical-middle
+              %span.in-grey-600 Quantity
+            %td
+              .input-group
+                %a.input-link{href: carts_path(book_id: book.id, count: 1), "data-turbo-method": :delete}
+                  %i.fa.fa-minus.line-height-40
+                %input.form-control.quantity-input{type: "number", value: count}
+                %a.input-link{href: carts_path(book_id: book.id, count: 1), "data-turbo-method": :post}
+                  %i.fa.fa-plus.line-height-40-40
+          %tr
+            %td
+              %span.in-grey-600 SubTotal
+            %td
+              %span.font-16.in-gold-500= number_to_currency((book.price * count), :unit => "€")
   .hidden-xs
     %table.table.table-hover
       %tr.no-hover
@@ -89,5 +90,7 @@
                 %strong.font-18 Order Total:
               %td
                 %strong.font-18= number_to_currency(@order_total, :unit => "€")
-          %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
-  %button.btn.btn-default.mb-20.hidden-xs.center-block Checkout
+          %a.btn.btn-default.mb-20.visible-xs-inline-block{type: "button"} Checkout
+  .row
+    .col-sm-2.col-sm-offset-5
+      %a.btn.btn-default.mb-20.hidden-xs.center-block{type: "button"} Checkout

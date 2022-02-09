@@ -25,14 +25,16 @@
           %input{type: "hidden", name: "book_id", value: @book.id}
           .col-xs-5.col-md-3
             .input-group.general-position
-              %a#counter_minus.input-link{href: "#"}
+              %a#counter_minus.input-link
                 %i.fa.fa-minus.line-height-40
-              %input#counter_on_book_page.form-control.quantity-input{name: "count", value: 1, type: "number", min: 1, max: @book.count}
-              %a#counter_plus.input-link{href: "#"}
+              %input#counter_on_book_page.form-control.quantity-input{name: "count", value: 1, type: "number", readonly: "true"}
+              %a#counter_plus.input-link
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5
             %button.btn.btn-default.pull-right.general-position{type: "submit"} Add to Cart
-      %p.small.text-success Available For Order: #{@book.count}
+      %p.small.text-success
+        Available For Order:
+        %span#available_book #{@book.count}
       .general-info-wrap.divider-lg
         %p Description
         %p.lead.small.line-height-2
@@ -75,7 +77,7 @@
     - @reviews.each do |review|
       .general-message-wrap.divider-lg
         .clearfix
-          %span.img-circle.logo-size.inlide-block.pull-left.logo-empty #{review.title.first.capitalize}
+          %span.img-circle.logo-size.inline-block.pull-left.logo-empty #{review.title.first.capitalize}
           .ml-70
             %div
               .general-message-date.hidden-xs #{review.created_at.strftime("%d/%m/%y")}

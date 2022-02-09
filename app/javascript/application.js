@@ -6,10 +6,15 @@ import "vendor/jquery"
 import "vendor/bootstrap"
 
 let counter = document.getElementById("counter_on_book_page");
+let available_book = document.getElementById("available_book");
 
 document.getElementById("counter_plus").addEventListener("click", function() {
-    counter.value +=1;
+    if(counter.value < available_book.innerText) {
+        counter.value ++;
+    }
 })
 document.getElementById("counter_minus").addEventListener("click", function() {
-    counter.value -=1;
+    if(counter.value > 1) {
+        counter.value --;
+    }
 })
