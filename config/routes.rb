@@ -13,7 +13,13 @@ Rails.application.routes.draw do
     resources :reviews, only: :create
   end
 
-  resource :addresses
+  scope(path_names: { create: "create" }) do
+    resource :carts do
+      get "/", to: "carts#index"
+    end
+  end
+
+  resource :addresses, only: %i[new update]
 
   root "home#home"
 end
