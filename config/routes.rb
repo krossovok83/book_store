@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get "delivery", to: "delivery"
     get "payment", to: "payment"
     get "confirm", to: "confirm"
+    get "complete", to: "complete"
   end
 
   resource :addresses, only: %i[new update] do

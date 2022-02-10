@@ -1,0 +1,27 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+        %span.in-grey-600 Book
+      %th.col-method
+      %th
+        %span.in-grey-600 Price
+      %th
+        %span.in-grey-600 Quantity
+      %th
+        %span.in-grey-600 Total
+  %tbody
+    - @cart.each do |book, count|
+      %tr
+        %td
+          .general-img-wrap-table
+            %img.cart-img-shadow.pull-left{src: book.cover, alt: "design-book"}
+        %td
+          %p.title= book.title
+          %p.in-grey-600.fw-300= book.description
+        %td
+          %span.font-16.in-gold-500= number_to_currency(book.price, :unit => "€")
+        %td
+          %span.ml-30= count
+        %td
+          %span.font-16.in-gold-500= number_to_currency((book.price * count), :unit => "€")

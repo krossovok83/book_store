@@ -1,0 +1,22 @@
+- @cart.each do |book, count|
+  .general-cart-item.divider-lg
+    .general-img-wrap-table
+      %img.cart-img-shadow{src: book.cover, alt: "design-book"}
+    %p.title= book.title
+    %P.in-grey-600.fw-300= book.description
+    %table.table
+      %tr
+        %td
+          %span.in-grey-600 Price
+        %td
+          %span.font-16.in-gold-500= number_to_currency(book.price, :unit => "€")
+      %tr
+        %td.vertical-middle
+          %span.in-grey-600 Quantity
+        %td
+          %span= count
+      %tr
+        %td
+          %span.in-grey-600 Subtotal
+        %td
+          %span.font-16.in-gold-500= number_to_currency((book.price * count), :unit => "€")

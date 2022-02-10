@@ -2,6 +2,7 @@
 
 class CheckoutController < ApplicationController
   before_action :check_login
+
   DELIVERY = {
     self: %w[0 Self-Delivery! Whenever],
     today: ["28.50", "Delivery Today!", "1 days"],
@@ -28,9 +29,17 @@ class CheckoutController < ApplicationController
   def confirm
     cookies[:card_number] = params[:card_number]
     cookies[:card_date] = params[:exp_date]
+    cookies[:card_name] = params[:card_name]
+    cookies[:card_cvv] = params[:cvv]
     @shipping = current_user.shipping_address
     @billing = current_user.billing_address
-    @cart = Cart.where(session: session[:current_user])
+    @delivery = DELIVERY
+    @cart = count_book.sort
+  end
+
+  def complete
+    @cart = count_book.sort
+    @shipping = current_user.shipping_address
   end
 
   private
@@ -39,5 +48,10 @@ class CheckoutController < ApplicationController
     return unless current_user.nil?
 
     redirect_to new_user_session_path, alert: "You must be logged in to perform the following actions"
+  end
+
+  def count_book
+    cart = Cart.where(session: session[:current_user])
+    Hash[*cart.group_by(&:book_id).map { |i| [Book.find(i.first), i.last&.size] }.flatten(1)]
   end
 end

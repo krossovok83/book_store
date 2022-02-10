@@ -24,93 +24,46 @@
     .col-sm-3
       %h3.general-subtitle Shipping Address
       %p.general-address
-        John Doe
-        %span.general-edit edit
+        #{@shipping.first_name} #{@shipping.last_name}
+        %a.span.general-edit{href: checkout_address_path} edit
         %br
-        44 Fifth Ave v231
+        = @shipping.address
         %br
-        New York NY 1001
+        #{@shipping.city} #{@shipping.zip}
         %br
-        United States
+        = @shipping.country
         %br
-        Phone +16507599755
+        Phone #{@shipping.phone}
     .col-sm-3
       %h3.general-subtitle Billing Address
       %p.general-address
-        John Doe
-        %span.general-edit edit
+        #{@billing.first_name} #{@billing.last_name}
+        %a.span.general-edit{href: checkout_address_path} edit
         %br
-        44 Fifth Ave v231
+        = @billing.address
         %br
-        New York NY 1001
+        #{@billing.city} #{@billing.zip}
         %br
-        United States
+        = @billing.country
         %br
-        Phone +16507599755
+        Phone #{@billing.phone}
     .col-sm-3
       %h3.general-subtitle Shipments
       %p.general-address
-        Delivery Next Day!
-        %span.general-edit edit
-        %br
-        By train
+        = @delivery[cookies[:delivery].to_sym].second
+        %a.span.general-edit{href: checkout_delivery_path} edit
     .col-sm-3
       %h3.general-subtitle Payment Information
       %p.general-address
-        ** ** ** 8756
-        %span.general-edit edit
+        ** ** ** #{cookies[:card_number][-4..-1]}
+        %a.span.general-edit{href: checkout_payment_path} edit
         %br
-        12/2018
+        #{cookies[:card_date][0..2]}20#{cookies[:card_date][-2..-1]}
   .visible-xs
-    .general-cart-item.divider-lg
-      .general-img-wrap-table
-        %img.cart-img-shadow{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-      %p.title Android Programming for Beginners
-      %P.in-grey-600.fw-300 A recipe-based book to help you efficiently create amazing PHP-based applications with Laravel 5.x
-      %table.table
-        %tr
-          %td
-            %span.in-grey-600 Price
-          %td
-            %span.font-16.in-gold-500 €28.50
-        %tr
-          %td.vertical-middle
-            %span.in-grey-600 Quantity
-          %td
-            %span 1
-        %tr
-          %td
-            %span.in-grey-600 SubTotal
-          %td
-            %span.font-16.in-gold-500 €32.90
+    = render "cart_xs"
   .hidden-xs.divider-lg.pt-20
-    %table.table.table-hover
-      %thead
-        %tr
-          %th
-            %span.in-grey-600 Book
-          %th.col-method
-          %th
-            %span.in-grey-600 Price
-          %th
-            %span.in-grey-600 Quantity
-          %th
-            %span.in-grey-600 Total
-      %tbody
-        %tr
-          %td
-            .general-img-wrap-table
-              %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
-          %td
-            %p.title Android Programming for Beginners
-            %p.in-grey-600.fw-300 Maximize the potential of Bootstrap with a collection of real-world site projects for better, faster, more responsive web applications
-          %td
-            %span.font-16.in-gold-500 €28.50
-          %td
-            %span.ml-30 1
-          %td
-            %span.font-16.in-gold-500 €32.90
+    = render "cart"
   .text-center.general-text-right
     = render "order"
   .text-center
-    %button.btn.btn-default.mb-20 Place Order
+    %a.button.btn.btn-default.mb-20{href: checkout_complete_path(number_order: Time.now.strftime("%m%d%H%M"))} Place Order
