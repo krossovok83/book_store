@@ -34,11 +34,12 @@ class CheckoutController < ApplicationController
     @shipping = current_user.shipping_address
     @billing = current_user.billing_address
     @delivery = DELIVERY
-    @cart = count_book.sort
+    @cart = count_book(Cart.where(session: session[:current_user])).sort
   end
 
   def complete
-    @cart = count_book.sort
+    @order = Order.find_by(number: params[:number_order])
+    @cart = count_book(BooksOrder.where(order_id: @order.id)).sort
     @shipping = current_user.shipping_address
   end
 
@@ -50,8 +51,7 @@ class CheckoutController < ApplicationController
     redirect_to new_user_session_path, alert: "You must be logged in to perform the following actions"
   end
 
-  def count_book
-    cart = Cart.where(session: session[:current_user])
-    Hash[*cart.group_by(&:book_id).map { |i| [Book.find(i.first), i.last&.size] }.flatten(1)]
+  def count_book(source)
+    Hash[*source.group_by(&:book_id).map { |i| [Book.find(i.first), i.last&.size] }.flatten(1)]
   end
 end

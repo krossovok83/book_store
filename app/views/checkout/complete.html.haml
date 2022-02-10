@@ -43,14 +43,31 @@
         %br
         Phone #{@shipping.phone}
     .col-sm-6.hidden-xs.text-right
-      %p.general-order-number.mb-0 Order #R25314582
-      %p.general-address.mb-30 October 29, 2016
+      %p.general-order-number.mb-0 Order №#{params[:number_order]}
+      %p.general-address.mb-30= @order.created_at.strftime("%B %d, %Y")
   .visible-xs
     = render "cart_xs"
   .hidden-xs.divider-lg.pt-20
     = render "cart"
   .text-center.general-text-right
-    = render "order"
+    %p.in-gold-500.font-18 Order Summary
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      %tr
+        %td
+          %p.font-16 Subtotal:
+        %td
+          %p.font-16= number_to_currency(@order.subtotal, :unit => "€")
+      %tr
+        %td
+          %p.font-16 Coupon:
+        %td
+          %p.font-16= number_to_currency(@order.coupon, :unit => "€")
+      %tr
+        %td
+          %strong.font-18 Order Total:
+        %td
+          %strong.font-18= number_to_currency(@order.order_total, :unit => "€")
   .text-center
     %button.btn.btn-default.mb-20 Back to Store
+
 

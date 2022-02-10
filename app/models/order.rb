@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  belongs_to :book
+  has_many :books_orders, dependent: :destroy
+  has_many :books, through: :books_orders
   belongs_to :user
 end

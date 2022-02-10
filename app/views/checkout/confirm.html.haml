@@ -66,4 +66,4 @@
   .text-center.general-text-right
     = render "order"
   .text-center
-    %a.button.btn.btn-default.mb-20{href: checkout_complete_path(number_order: Time.now.strftime("%m%d%H%M"))} Place Order
+    %a.button.btn.btn-default.mb-20{href: user_orders_path(number_order: "R#{Time.now.strftime("%m%d%H%M")}", user_id: current_user.id), "data-turbo-method": "post"} Place Order

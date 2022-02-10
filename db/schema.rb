@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_170340) do
+ActiveRecord::Schema.define(version: 2022_02_10_230823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 2022_02_09_170340) do
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
+  create_table "books_orders", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_books_orders_on_book_id"
+    t.index ["order_id"], name: "index_books_orders_on_order_id"
+  end
+
   create_table "carts", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.string "session", null: false
@@ -86,16 +95,17 @@ ActiveRecord::Schema.define(version: 2022_02_09_170340) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "number"
+    t.string "number"
     t.bigint "user_id", null: false
-    t.bigint "book_id", null: false
-    t.integer "count"
+    t.string "status"
     t.decimal "subtotal", precision: 8, scale: 2
     t.decimal "order_total", precision: 8, scale: 2
-    t.integer "coupon"
+    t.decimal "coupon", precision: 8, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_id"], name: "index_orders_on_book_id"
+    t.string "delivery"
+    t.string "card_number"
+    t.string "card_date"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -132,8 +142,9 @@ ActiveRecord::Schema.define(version: 2022_02_09_170340) do
   add_foreign_key "addresses", "users"
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
+  add_foreign_key "books_orders", "books"
+  add_foreign_key "books_orders", "orders"
   add_foreign_key "carts", "books"
-  add_foreign_key "orders", "books"
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
