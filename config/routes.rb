@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   scope "/checkout", controller: "checkout", as: "checkout" do
     get "address", to: "address"
     get "delivery", to: "delivery"
+    get "payment", to: "payment"
   end
 
   resource :addresses, only: %i[new update] do
