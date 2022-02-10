@@ -25,6 +25,14 @@ class CheckoutController < ApplicationController
     cookies[:order_total] = cookies[:item_total].to_f - cookies[:coupon].to_f + DELIVERY[cookies[:delivery].to_sym].first.to_f
   end
 
+  def confirm
+    cookies[:card_number] = params[:card_number]
+    cookies[:card_date] = params[:exp_date]
+    @shipping = current_user.shipping_address
+    @billing = current_user.billing_address
+    @cart = Cart.where(session: session[:current_user])
+  end
+
   private
 
   def check_login
