@@ -1,0 +1,21 @@
+.form-group
+  = form.label :first_name
+  = form.text_field :first_name, value: type&.first_name, class: "form-control"
+.form-group
+  = form.label :last_name
+  = form.text_field :last_name, value: type&.last_name, class: "form-control"
+.form-group
+  = form.label :address
+  = form.text_field :address, value: type&.address, class: "form-control"
+.form-group
+  = form.label :city
+  = form.text_field :city, value: type&.city, class: "form-control"
+.form-group
+  = form.label :zip
+  = form.text_field :zip, value: type&.zip, class: "form-control"
+.form-group
+  = form.label :country
+  = form.text_field :country, value: type&.country, class: "form-control"
+.form-group.mb-60
+  = form.label :phone
+  = form.text_field :phone, value: type&.phone, placeholder: "Example +355 66 123 4567", class: "form-control"

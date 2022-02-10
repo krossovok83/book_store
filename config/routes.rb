@@ -19,7 +19,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :addresses, only: %i[new update]
+  resources :users, only: [] do
+    resources :orders, only: %i[create show]
+  end
+
+  scope "/checkout", controller: "checkout", as: "checkout" do
+    get "address", to: "address"
+    get "delivery", to: "delivery"
+  end
+
+  resource :addresses, only: %i[new update] do
+    put "check", to: "check"
+  end
 
   root "home#home"
 end

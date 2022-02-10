@@ -90,7 +90,7 @@
                 %strong.font-18 Order Total:
               %td
                 %strong.font-18= number_to_currency(@order_total, :unit => "€")
-          %a.btn.btn-default.mb-20.visible-xs-inline-block{type: "button"} Checkout
+          %a.btn.btn-default.mb-20.visible-xs-inline-block{type: "button", href: checkout_address_path} Checkout
   .row
     .col-sm-2.col-sm-offset-5
-      %a.btn.btn-default.mb-20.hidden-xs.center-block{type: "button"} Checkout
+      %a.btn.btn-default.mb-20.hidden-xs.center-block{type: "button", href: checkout_address_path} Checkout

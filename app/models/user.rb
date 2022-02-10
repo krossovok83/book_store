@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_one :shipping_address, dependent: :destroy
   has_one :billing_address, dependent: :destroy
   has_many :review, dependent: :destroy
+  has_many :orders, dependent: :destroy
 end

@@ -1,0 +1,63 @@
+%main.container
+  %h1.general-title-margin Checkout
+  %ul.steps.list-inline
+    %li.step.active
+      %span.step-number 1
+      %span.step-text.hidden-xs Address
+    %li.step-divider
+    %li.step
+      %span.step-number 2
+      %span.step-text.hidden-xs Delivery
+    %li.step-divider
+    %li.step
+      %span.step-number 3
+      %span.step-text.hidden-xs Payment
+    %li.step-divider
+    %li.step
+      %span.step-number 4
+      %span.step-text.hidden-xs Confirm
+    %li.step-divider
+    %li.step
+      %span.step-number 5
+      %span.step-text.hidden-xs Complete
+  = form_with :url => check_addresses_path, method: "put" do |form|
+    .hidden-xs.hidden-sm
+      .row
+        .col-md-5
+          %h3.general-subtitle Billing Address
+          %p.general-info-text all fields are required
+        .col-md-5.col-md-offset-1
+          %h3.general-subtitle Shipping Address
+    .row
+      .col-md-5.mb-40
+        = form.fields_for :billing do |form|
+          .visible-xs.visible-sm
+            %h3.general-subtitle Billing Address
+            %p.general-info-text all fields are required
+          = render "form_address", type: current_user.billing_address, form: form
+      .col-md-5.col-md-offset-1.mb-60
+        #shipping
+          = form.fields_for :shipping do |form|
+            .visible-xs.visible-sm
+              %h3.general-subtitle Shipping Address
+            = render "form_address", type: current_user.shipping_address, form: form
+        .form-group.checkbox
+          %label.checkbox-label
+            = form.check_box :use_billing, class: "checkbox-input", value: "1", hidden: "true"
+            %span.checkbox-icon
+              %i.fa.fa-check
+            %span.checkbox-text Use Billing Address
+    .general-text-align.mb-60
+      %p.in-gold-500.font-18 Order Summary
+      %table.general-summary-table
+        %tr
+          %td
+            %p.font-16 Item Total:
+          %td
+            %p.font-16= number_to_currency(cookies[:item_total], :unit => "€")
+        %tr
+          %td
+            %p.font-16 Order Total:
+          %td
+            %p.font-16= number_to_currency(cookies[:order_total], :unit => "€")
+    %button.btn.btn-default.center-block.mb-20{type: "submit"} Save and Continue
