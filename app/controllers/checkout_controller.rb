@@ -27,10 +27,10 @@ class CheckoutController < ApplicationController
   end
 
   def confirm
-    cookies[:card_number] = params[:card_number]
-    cookies[:card_date] = params[:exp_date]
-    cookies[:card_name] = params[:card_name]
-    cookies[:card_cvv] = params[:cvv]
+    cookies.encrypted[:card_number] = params[:card_number]
+    cookies.encrypted[:card_date] = params[:exp_date]
+    cookies.encrypted[:card_name] = params[:card_name]
+    cookies.encrypted[:card_cvv] = params[:cvv]
     @shipping = current_user.shipping_address
     @billing = current_user.billing_address
     @delivery = DELIVERY

@@ -4,10 +4,10 @@ class OrdersController < ApplicationController
   def create
     order = Order.new(status: "Waiting for processing", subtotal: cookies[:item_total],
                       order_total: cookies[:order_total], coupon: cookies[:coupon], user_id: current_user.id,
-                      number: params[:number_order], delivery: cookies[:delivery], card_number: cookies[:card_number],
-                      card_date: cookies[:card_date])
+                      number: params[:number_order], delivery: cookies[:delivery],
+                      card_number: cookies.encrypted[:card_number], card_date: cookies.encrypted[:card_date])
     order.books_orders << books_in_cart
-    order.save ? clear_cart && redirect_to(checkout_complete_path, number: params[:number_order]) : redirect_back_or_to(carts_path)
+    order.save ? clear_cart && redirect_to(checkout_complete_path(number_order: params[:number_order])) : redirect_back_or_to(carts_path)
   end
 
   private

@@ -55,10 +55,10 @@
     .col-sm-3
       %h3.general-subtitle Payment Information
       %p.general-address
-        ** ** ** #{cookies[:card_number][-4..-1]}
+        ** ** ** #{cookies.encrypted[:card_number][-4..-1]}
         %a.span.general-edit{href: checkout_payment_path} edit
         %br
-        #{cookies[:card_date][0..2]}20#{cookies[:card_date][-2..-1]}
+        #{cookies.encrypted[:card_date][0..2]}20#{cookies.encrypted[:card_date][-2..-1]}
   .visible-xs
     = render "cart_xs"
   .hidden-xs.divider-lg.pt-20
