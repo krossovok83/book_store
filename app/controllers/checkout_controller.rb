@@ -3,13 +3,6 @@
 class CheckoutController < ApplicationController
   before_action :check_login
 
-  DELIVERY = {
-    self: %w[0 Self-Delivery! Whenever],
-    today: ["28.50", "Delivery Today!", "1 days"],
-    week: ["20.00", "Delivery During The Week!", "3 to 7 days"],
-    month: ["10.75", "Delivery From A Week To A Month!", "7 to 30 days"]
-  }.freeze
-
   def address
     cart = Cart.where(session: session[:current_user])
     cookies[:item_total] = cart.map { |i| i.book.price }.sum
@@ -17,9 +10,7 @@ class CheckoutController < ApplicationController
     cookies[:coupon] = cart.first.coupon || 0
   end
 
-  def delivery
-    @delivery = DELIVERY
-  end
+  def delivery; end
 
   def payment
     cookies[:delivery] = params[:delivery]
@@ -33,7 +24,6 @@ class CheckoutController < ApplicationController
     cookies.encrypted[:card_cvv] = params[:cvv]
     @shipping = current_user.shipping_address
     @billing = current_user.billing_address
-    @delivery = DELIVERY
     @cart = count_book(Cart.where(session: session[:current_user])).sort
   end
 

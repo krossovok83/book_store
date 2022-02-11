@@ -22,7 +22,7 @@
       %span.step-text.hidden-xs Complete
   = form_with url: checkout_payment_path, method: :get do |form|
     .visible-xs
-      - @delivery.each do |method, values|
+      - DELIVERY.each do |method, values|
         .general-cart-item.divider-lg-bottom
           %table.table
             %tr

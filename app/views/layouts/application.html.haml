@@ -43,15 +43,19 @@
                   - Category.all.order("title").each do |category|
                     %li
                       %a.collapse-link{href: category_books_path("#{category.title}", sort: "newest_first")} #{category.title}
-                  %li.divider{role: "separator"}
-                  %li
-                    %a.collapse-link
-                      = link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }
               %li
                 - if current_user.nil?
                   %a.collapse-link{href: new_user_session_path} Sign In
                 - else
-                  %a.collapse-link{href: edit_user_registration_path}= current_user.email
+                  %a{type: "button", 'data-toggle': "collapse", href: "#account", 'aria-expanded': "false", 'aria-controls': "menu"}= current_user.email
+                  %ul#account.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+                    %li
+                      %a.collapse-link{href: edit_user_registration_path} My Account
+                    %li
+                      %a.collapse-link{href: "#"} Orders
+                    %li.divider{role: "separator"}
+                    %li
+                      = link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "collapse-link"
           .hidden-xs
             %ul.nav.navbar-nav
               %li
@@ -64,10 +68,6 @@
                   - Category.all.order("title").each do |category|
                     %li
                       %a{href: category_books_path("#{category.title}", sort: "newest_first")} #{category.title}
-                  %li.divider{role: "separator"}
-                  %li
-                    %a
-                      = link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }
               - if current_user&.admin?
                 %li
                   %a.collapse-link{href: admin_root_path} Admin
@@ -75,7 +75,16 @@
                 - if current_user.nil?
                   %a.collapse-link{href: new_user_session_path} Sign In
                 - else
-                  %a.collapse-link{href: edit_user_registration_path}= current_user.email
+                  %li.dropdown
+                    %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= current_user.email
+                    %ul.dropdown-menu
+                      %li
+                        %a{href: edit_user_registration_path} My Account
+                      %li
+                        %a{href: "#"} Orders
+                      %li.divider{role: "separator"}
+                      %li
+                        = link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }
     %main.container
       = yield
       .text-center
@@ -90,10 +99,11 @@
                 %a.nav-link{href: root_path} Home
               %li
                 %a.nav-link{href: category_books_path("All", sort: "Newest First")} Shop
-              %li
-                %a.nav-link{href: "#"} Orders
-              %li
-                %a.nav-link{href: "#"} Settings
+              - unless current_user.nil?
+                %li
+                  %a.nav-link{href: "#"} Orders
+                %li
+                  %a.nav-link{href: edit_user_registration_path} Settings
           .col-sm-3
             %p.general-nav-mail support@bookstore.com
             %p.general-nav-number (555)-555-5555

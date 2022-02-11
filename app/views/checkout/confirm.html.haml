@@ -50,7 +50,7 @@
     .col-sm-3
       %h3.general-subtitle Shipments
       %p.general-address
-        = @delivery[cookies[:delivery].to_sym].second
+        = DELIVERY[cookies[:delivery].to_sym].second
         %a.span.general-edit{href: checkout_delivery_path} edit
     .col-sm-3
       %h3.general-subtitle Payment Information

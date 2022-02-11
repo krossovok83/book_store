@@ -4,7 +4,7 @@ User.all.each do |user|
   rand(5..15).times do
     order = Order.new(number: "R#{rand(11_111_111..99_999_999)}",
                       user_id: user.id,
-                      status: ["Waiting for processing", "In delivery", "Delivered", "Canceled"].sample,
+                      status: ORDER_STATUS.sample,
                       delivery: %w[self today week month].sample,
                       card_number: ::FFaker::Bank.card_number,
                       card_date: ::FFaker::Bank.card_expiry_date,
