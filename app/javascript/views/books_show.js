@@ -1,13 +1,15 @@
 
-let counter = document.getElementById("counter_on_book_page");
-let available_book = document.getElementById("available_book");
+const counter = document.getElementById("counter_on_book_page");
+const available_book = document.getElementById("available_book");
+const counter_plus = document.getElementById("counter_plus")
+const counter_minus = document.getElementById("counter_minus")
 
-document.getElementById("counter_plus").addEventListener("click", function PlusOne() {
-    if(counter.value < available_book.innerText) {
+counter_plus && counter_plus.addEventListener("click", function PlusOne() {
+    if(counter.value < parseInt(available_book.innerText)) {
         counter.value ++;
     }
 });
-document.getElementById("counter_minus").addEventListener("click", function MinusOne() {
+counter_minus && counter_minus.addEventListener("click", function MinusOne() {
     if(counter.value > 1) {
         counter.value --;
     }

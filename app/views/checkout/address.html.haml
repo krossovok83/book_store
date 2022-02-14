@@ -43,7 +43,7 @@
             = render "form_address", type: current_user.shipping_address, form: form
         .form-group.checkbox
           %label.checkbox-label
-            = form.check_box :use_billing, class: "checkbox-input", value: "1", hidden: "true"
+            = form.check_box :use_billing, class: "checkbox-input", id: 'checkbox_shipping', value: "1", hidden: "true"
             %span.checkbox-icon
               %i.fa.fa-check
             %span.checkbox-text Use Billing Address
