@@ -1,0 +1,73 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin Checkout
+  %ul.steps.list-inline
+    %li.step.done
+      %span.step-number
+        %i.fa.fa-check.step-icon
+      %span.step-text.hidden-xs Address
+    %li.step-divider
+    %li.step.done
+      %span.step-number
+        %i.fa.fa-check.step-icon
+      %span.step-text.hidden-xs Delivery
+    %li.step-divider
+    %li.step.done
+      %span.step-number
+        %i.fa.fa-check.step-icon
+      %span.step-text.hidden-xs Payment
+    %li.step-divider
+    %li.step.done
+      %span.step-number
+        %i.fa.fa-check.step-icon
+      %span.step-text.hidden-xs Confirm
+    %li.step-divider
+    %li.step.active
+      %span.step-number 5
+      %span.step-text.hidden-xs Complete
+  .text-center.mb-40
+    %h3.general-subtitle Thank You for your Order!
+    %p.fw-300 An order confirmation has been has been sent to #{current_user.email}
+  .row.mb-20
+    .col-sm-6
+      .visible-xs
+        %p.general-order-number.mb-0 Order #R25314582
+        %p.general-address.mb-30 October 29, 2016
+      %p.general-address
+        #{@shipping.first_name} #{@shipping.last_name}
+        %br
+        = @shipping.address
+        %br
+        #{@shipping.city} #{@shipping.zip}
+        %br
+        = @shipping.country
+        %br
+        Phone #{@shipping.phone}
+    .col-sm-6.hidden-xs.text-right
+      %p.general-order-number.mb-0 Order №#{params[:number_order]}
+      %p.general-address.mb-30= @order.created_at.strftime("%B %d, %Y")
+  .visible-xs
+    = render "cart_xs"
+  .hidden-xs.divider-lg.pt-20
+    = render "cart"
+  .text-center.general-text-right
+    %p.in-gold-500.font-18 Order Summary
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      %tr
+        %td
+          %p.font-16 Subtotal:
+        %td
+          %p.font-16= number_to_currency(@order.subtotal, :unit => "€")
+      %tr
+        %td
+          %p.font-16 Coupon:
+        %td
+          %p.font-16= number_to_currency(@order.coupon, :unit => "€")
+      %tr
+        %td
+          %strong.font-18 Order Total:
+        %td
+          %strong.font-18= number_to_currency(@order.order_total, :unit => "€")
+  .text-center
+    %a.button.btn.btn-default.mb-20{href: root_path} Back to Store
+
+

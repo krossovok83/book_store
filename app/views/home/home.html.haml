@@ -1,0 +1,62 @@
+#slider.carousel.slide{'data-ride': "carousel"}
+  %ol.carousel-indicators
+    %li.active{'data-target': "#slider", 'data-slide-to': "0"}
+    %li{'data-target': "#slider", 'data-slide-to': "1"}
+    %li{'data-target': "#slider", 'data-slide-to': "2"}
+  .carousel-inner{role: "listbox"}
+    .item.active
+      .row
+        .col-sm-5
+          .general-img-wrap
+            %img.img-shadow.general-thumbnail-img{src: "#{@active_book.cover}"}
+        .col-sm-7
+          .mb-60
+            %h1 #{@active_book.title}
+            %p.lead= @active_book.description
+            %p.lead.small #{@active_book.author.last_name} #{@active_book.author.first_name}
+            .general-align
+              %button.disabled.btn Buy Now
+    - @last_books.each do |book|
+      .item
+        .row
+          .col-sm-5
+            .general-img-wrap
+              %img.img-shadow.general-thumbnail-img{src: "#{book.cover}"}
+          .col-sm-7
+            .mb-60
+              %h1 #{book.title}
+              %p.lead= book.description
+              %p.lead.small #{book.author.last_name} #{book.author.first_name}
+              .general-align
+                %button.disabled.btn Buy Now
+  %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+    %span.icon-prev{'aria-hidden': "true"}
+    %span.sr-only Previous
+  %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+    %span.icon-next{'aria-hidden': "true"}
+    %span.sr-only Next
+.container
+.jumbotron.text-center.mb-0
+  %h2.h1 Welcome to our amazing Bookstore!
+  .mb-res-50
+    %p We pore through hundreds of new books each month and select the five best we can find to share with our members.
+  %a.btn.btn-default{href: category_books_path("All", sort: "Newest First")} Get Started
+.mb-35
+  %h3 Best Sellers
+  .row
+    - @bestsellers.each do |book|
+      .col-xs-6.col-sm-3
+        .general-thumb-wrap
+          .thumbnail.general-thumbnail
+            %img.img-shadow.general-thumbnail-img{src: "#{book.cover}"}
+            .thumb-hover
+              .general-thumb-link-wrap
+                %a.thumb-hover-link{href: "/books/#{book.id}"}
+                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+                %a.thumb-hover-link{href: carts_path(book_id: book.id, count: 1), "data-turbo-method": :post}
+                  %i.fa.fa-shopping-cart.thumb-icon
+        .general-thumb-info
+          %p.title #{book.title}
+          %p.font-16.in-gold-500 #{number_to_currency(book.price, :unit => "€")}
+          %span.divider-sm
+          %p.lead.small #{book.author.last_name} #{book.author.first_name}

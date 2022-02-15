@@ -1,0 +1,22 @@
+%h3.general-login-title.text-center Sign up
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "general-form"}) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  .field.form-group.mb-30
+    = f.label :email, "Enter E-Mail"
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+  .field.form-group.mb-30
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br/
+    = f.password_field :password, autocomplete: "new-password", class: "form-control"
+  .field.form-group.mb-30
+    = f.label :password_confirmation, "Confirm Password"
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+  .actions.text-center
+    = f.submit "Sign up", class: "btn btn-default mb-20"
+.text-center
+  = render "devise/shared/links"

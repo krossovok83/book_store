@@ -1,0 +1,16 @@
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+AllCops:
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '/*.rake'
+    - 'test//*.rb'
+    - 'spec/**/*.rb'
+    - 'app/admin/*.rb'

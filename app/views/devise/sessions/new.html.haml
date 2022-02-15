@@ -1,0 +1,27 @@
+.text-center
+  %h3.general-login-title Log In
+  %a.general-login-icon{href: "#"}
+    %i.fa.fa-facebook-official
+  %p.general-login-text or
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "general-form", data: { turbo: false }}) do |f|
+  .field.form-group.mb-30
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+  .field.form-group.mb-30
+    = f.label :password
+    %br/
+    = f.password_field :password, autocomplete: "current-password", class: "form-control"
+  - if devise_mapping.rememberable?
+    .form-group.checkbox.text-center.mb-30
+      %label.checkbox-label
+        %input{:autocomplete => "off", :name => "user[remember_me]", :type => "hidden", :value => "0"}/
+        %input#user_remember_me.checkbox-input{:hidden => "true", :name => "user[remember_me]", :type => "checkbox", :value => "1"}/
+        %span.checkbox-icon
+          %i.fa.fa-check
+        %span.checkbox-text Remember me
+  .actions.text-center
+    = f.submit "Log in", class: "btn btn-primary"
+.text-center
+  = button_to "Sign in with Facebook"
+  = render "devise/shared/links"

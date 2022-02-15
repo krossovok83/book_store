@@ -1,0 +1,45 @@
+%main.container.mb-res-50
+  %h1.general-title-margin Checkout
+  %ul.steps.list-inline
+    %li.step
+      %span.step-number 1
+      %span.step-text.hidden-xs Address
+    %li.step-divider
+    %li.step
+      %span.step-number 2
+      %span.step-text.hidden-xs Delivery
+    %li.step-divider
+    %li.step.active
+      %span.step-number 3
+      %span.step-text.hidden-xs Payment
+    %li.step-divider
+    %li.step
+      %span.step-number 4
+      %span.step-text.hidden-xs Confirm
+    %li.step-divider
+    %li.step
+      %span.step-number 5
+      %span.step-text.hidden-xs Complete
+  %h3.general-subtitle Credit Card
+  = form_with url: checkout_confirm_path, method: :get, class: "max-600" do |form|
+    .form-group.has-error
+      = form.label :card_number, class: "control-label input-label"
+      = form.number_field :card_number, placeholder: "Card Number", class: "form-control", value: cookies[:card_number]
+      %span.help-block Please enter a valid credit card number
+    .row
+      .col-sm-6
+        .form-group
+          = form.label :card_name, class: "control-label input-label"
+          = form.text_field :card_name, placeholder: "Name On Card", class: "form-control", value: cookies[:card_name]
+      .col-sm-3
+        .form-group
+          = form.label :exp_date, "MM / YY", class: "control-label input-label"
+          = form.text_field :exp_date, placeholder: "MM / YY", class: "form-control", value: cookies[:card_date]
+      .col-sm-3
+        .form-group.relative.mb-80
+          = form.label :cvv, "CVV", class: "control-label input-label"
+          = form.text_field :cvv, placeholder: "CVV", class: "form-control", value: cookies[:card_cvv]
+          %i.fa.fa-question-circle.general-form-help{title: "3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front"}
+    = render "order"
+    .text-center
+      %button.btn.btn-default.mb-80{type: "submit"} Save and Continue

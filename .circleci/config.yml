@@ -1,0 +1,75 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.0.0
+jobs:
+  build:
+    working_directory: ~/circleci-demo-ruby-rails
+
+    # Primary container image where all commands run
+
+    docker:
+      - image: cimg/ruby:3.0.3
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+
+    # Service container image available at `host: localhost`
+
+      - image: cimg/postgres:14.0
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: circle-test_test
+
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - &bundle_cache_full v2-repo-{{ checksum "Gemfile.lock" }}
+            - &bundle_cache v2-repo-
+
+      # Bundle install dependencies
+      - run:
+          name: Install dependencies
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+
+      - run: sudo apt install -y postgresql-client || true
+
+      # Install Node.Js
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
+      - run: node --version
+
+      # Store bundle cache
+      - save_cache:
+          key: *bundle_cache_full
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:test:load
+
+      - run:
+          name: Parallel RSpec
+          command: bin/rails test
+
+      # Save artifacts
+      - store_test_results:
+          path: /tmp/test-results
+
+      # Run specs
+      - run:
+          name: run specs
+          command: bundle exec rspec

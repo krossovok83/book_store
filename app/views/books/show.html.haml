@@ -1,0 +1,93 @@
+%main.container
+  %a.general-back-link{href: category_books_path("All", sort: "Newest First")}
+    %i.fa.fa-long-arrow-left.mr-15
+    Back to results
+  .row
+    .col-sm-6
+      .product-gallery
+        .mb-20
+          %img.img-responsive{src: "https://www.bramstein.com/static/smashing-book-5-photo-stack.9d5d114e3e.jpg"}
+        .images.clearfix
+          %a.img-link{href: "#"}
+            %img{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
+          %a.img-link{href: "#"}
+            %img{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
+          %a.img-link{href: "#"}
+            %img{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
+    .col-sm-6
+      %h1.mt-res-0 #{@book.title}
+      %h3.mt-res-0 Category: #{@book.category.title}
+      %p.lead.small #{@book.author.last_name} #{@book.author.first_name}
+      .row
+        .col-xs-12.col-md-4
+          %p.h1.in-gold-500.mt-10 #{number_to_currency(@book.price, :unit => "€")}
+        %form{action: carts_path, method: "post"}
+          %input{type: "hidden", name: "book_id", value: @book.id}
+          .col-xs-5.col-md-3
+            .input-group.general-position
+              %a#counter_minus.input-link
+                %i.fa.fa-minus.line-height-40
+              %input#counter_on_book_page.form-control.quantity-input{name: "count", value: 1, type: "number", readonly: "true"}
+              %a#counter_plus.input-link
+                %i.fa.fa-plus.line-height-40
+          .col-xs-7.col-md-5
+            %button.btn.btn-default.pull-right.general-position{type: "submit"} Add to Cart
+      %p.small.text-success
+        Available For Order:
+        %span#available_book #{@book.count}
+      .general-info-wrap.divider-lg
+        %p Description
+        %p.lead.small.line-height-2
+          #{@book.description}
+          %a.in-gold-500.ml-10{href: "#"} Read More
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left Year of publication
+          %p.lead.small.pull-right #{@book.year}
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left Dimensions
+          %p.lead.small.pull-right H:#{@book.height}" x W: #{@book.weight}" x D: #{@book.depth}"
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left Materials
+          %p.lead.small.pull-right #{@book.materials}
+  .mb-80
+    %h3 Write a Review
+    %p.general-info-text Score
+    .mb-15
+      %i.fa.fa-star.rate-empty
+      %i.fa.fa-star.rate-empty
+      %i.fa.fa-star.rate-empty
+      %i.fa.fa-star.rate-empty
+      %i.fa.fa-star.rate-empty
+    %form.row{action: "/books/#{@book.id}/Reviews", method: "post"}
+      .col-md-8
+        .mb-40
+          .form-group
+            %label.control-label.input-label.in-grey-600{for: "title"} Title
+            %input#title.form-control{name:"title", type: "text"}
+          .form-group
+            %label.control-label.input-label.in-grey-600{for: "review"} Review
+            %textarea#review.form-control{name:"review", type: "text"}
+        .text-right
+          %button.btn.btn-primary.mb-20{type: "submit"} Post
+  .mb-80
+    %h3.in-gold-500.mb-25 Reviews (#{@reviews.size})
+    - @reviews.each do |review|
+      .general-message-wrap.divider-lg
+        .clearfix
+          %span.img-circle.logo-size.inline-block.pull-left.logo-empty #{review.title.first.capitalize}
+          .ml-70
+            %div
+              .general-message-date.hidden-xs #{review.created_at.strftime("%d/%m/%y")}
+              .max-240
+                - if review.user_id?
+                  .general-message-verified.pull-right Verified Reviewer
+                .general-message-name #{review.title}
+            .mb-15
+              - review.rating.times do
+                %i.fa.fa-star.rate-star
+              - (5 - review.rating).times do
+                %i.fa.fa-star.rate-star.rate-empty
+            %p #{review.review}
